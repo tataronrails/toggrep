@@ -1,0 +1,8 @@
+%strong Title:
+%p
+  = @user.email
+%strong Toggl API
+%p
+  = @user.toggl_api
+%p
+  = link_to "Edit", edit_user_path(@user)
