@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:toggl_api)
+    params.require(:user).permit(:toggl_api_key)
   end
 
 end
