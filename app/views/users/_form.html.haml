@@ -1,0 +1,7 @@
+= simple_form_for @user do |f|
+  .field
+    = "Email: #{@user.email}"
+  .field
+    = f.input :toggl_api_key
+  .field
+    = f.button :submit
