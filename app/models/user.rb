@@ -12,9 +12,7 @@ class User < ActiveRecord::Base
 
       response = request.me(with_related_data)
 
-      response.select! do |k,v|
-        ALLOWED_FIELDS.include?(k)
-      end
+      response.select { |k,v| ALLOWED_FIELDS.include?(k) }
     rescue
 
     end
