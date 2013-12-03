@@ -18,3 +18,4 @@
 /.idea
 /.rvmrc
 /config/database.yml
+faraday.log

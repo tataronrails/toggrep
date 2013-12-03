@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = current_user
+    @datas = @user.toggl_me_request(true) unless @user.toggl_api_key.blank?
   end
 
   def edit
@@ -21,5 +22,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:toggl_api_key)
   end
-
 end

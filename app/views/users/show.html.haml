@@ -6,3 +6,29 @@
   = @user.toggl_api_key
 %p
   = link_to "Edit", edit_user_path(@user)
+
+- if @datas
+  %h1
+    = 'Персональные данные'
+  - @datas.except('projects','workspaces').each do |field|
+    %ul
+      %li
+        = field[0]
+        = '='
+        = field[1]
+
+  %h1
+    = 'Проекты'
+  - @datas['projects'].each do |project|
+    %ul
+      - project.select!{|k| %w(name).include?(k)}.values.each do |field|
+        %li
+          = field
+
+  %h1
+    = 'Рабочие области'
+  - @datas['workspaces'].each do |workspace|
+    %ul
+      - workspace.select!{|k| %w(name).include?(k)}.values.each do |field|
+        %li
+          = field

@@ -5,6 +5,10 @@ gem 'rails', '4.0.0'
 gem 'haml'
 gem 'devise'
 gem 'simple_form'
+gem 'toggl_api'
+
+gem 'faraday', '~> 0.8.7'
+gem 'awesome_print', '~> 1.1.0'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -29,6 +33,11 @@ gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
