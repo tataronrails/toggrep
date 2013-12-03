@@ -6,6 +6,7 @@ gem 'haml'
 gem 'devise'
 gem 'simple_form'
 gem 'toggl_api'
+gem 'rails_admin'
 
 gem 'faraday', '~> 0.8.7'
 gem 'awesome_print', '~> 1.1.0'
