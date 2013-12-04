@@ -1,0 +1,17 @@
+= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+  = f.error_notification
+  .ui.three.column.grid
+    .column
+      .ui.fluid.form.segment
+        %h3.ui.header Sign in
+        .field
+          = f.input :email, :required => false, :autofocus => false
+        .field
+          = f.input :password, :required => false
+        .inline.field
+          .ui.checkbox
+            %input{:type => "checkbox"}
+              = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
+
+        = f.button :submit, "Sign in", class: "small ui purple button"
+      = render "devise/shared/links"
