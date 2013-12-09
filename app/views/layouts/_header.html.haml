@@ -11,14 +11,12 @@
     %i.fa.fa-users
     Workers
   .right.menu
-    -if current_user
+    - if current_user
       .item
-        = link_to current_user.email
-      -#.item
-      -#  = link_to 'profile', user_path(current_user)
+        = link_to current_user, current_user
       .item
-        = link_to 'logout', destroy_user_session_path, :method=>'get'
-    -else
+        = link_to 'logout', destroy_user_session_path, :method => 'get'
+    - else
       .item
         = link_to "Sign up", new_user_registration_path
       .item
