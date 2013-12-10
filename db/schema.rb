@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131209123952) do
+ActiveRecord::Schema.define(version: 20131210121218) do
+
+  create_table "agreements", force: true do |t|
+    t.integer  "manager_id"
+    t.integer  "worker_id"
+    t.integer  "project_id"
+    t.integer  "limit_min"
+    t.integer  "limit_max"
+    t.date     "started_at"
+    t.date     "ended_at"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "agreements", ["manager_id"], name: "index_agreements_on_manager_id"
+  add_index "agreements", ["project_id"], name: "index_agreements_on_project_id"
+  add_index "agreements", ["worker_id"], name: "index_agreements_on_worker_id"
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"

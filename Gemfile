@@ -7,12 +7,12 @@ gem 'devise'
 gem 'simple_form'
 gem 'toggl_api'
 gem 'rails_admin'
-
 gem 'faraday', '~> 0.8.7'
 gem 'awesome_print', '~> 1.1.0'
 gem 'semantic-ui-sass', '~> 0.9.5.0'
 gem "font-awesome-rails"
 gem 'high_voltage'
+gem 'state_machine'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
