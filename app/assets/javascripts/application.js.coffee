@@ -12,6 +12,8 @@
 #
 #= require jquery
 #= require jquery_ujs
+#= require jquery.address
+#= require jquery.turbolinks
 #= require turbolinks
 #= require semantic-ui
 #= require_tree .
