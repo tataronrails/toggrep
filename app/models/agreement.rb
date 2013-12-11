@@ -38,7 +38,7 @@ class Agreement < ActiveRecord::Base
     end
 
     event :cancel do
-      transition :all => :canceled
+      transition all => :canceled
     end
   end
 
