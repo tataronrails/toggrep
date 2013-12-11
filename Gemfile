@@ -14,6 +14,7 @@ gem 'semantic-ui-sass', '~> 0.9.5.0'
 gem "font-awesome-rails"
 gem 'high_voltage'
 gem 'state_machine'
+gem 'jquery-turbolinks'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
