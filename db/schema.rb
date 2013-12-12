@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131210121218) do
+ActiveRecord::Schema.define(version: 20131212124914) do
 
   create_table "agreements", force: true do |t|
     t.integer  "manager_id"
@@ -71,5 +71,21 @@ ActiveRecord::Schema.define(version: 20131210121218) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "violation_checks", force: true do |t|
+    t.integer  "violation_rule_id",                 null: false
+    t.integer  "agreement_id",                      null: false
+    t.boolean  "result",            default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "violation_rules", force: true do |t|
+    t.string   "condition",   default: "", null: false
+    t.string   "assert_each", default: "", null: false
+    t.text     "description", default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

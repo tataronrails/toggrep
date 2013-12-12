@@ -1,0 +1,7 @@
+violation_checker_job:
+  every:
+    - "20m"
+    - :first_in: "1m"
+  class: "ViolationCheckerJob"
+  queue: simple
+  description: "Runs violations checks for workers"

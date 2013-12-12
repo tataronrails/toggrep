@@ -14,6 +14,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+/*.log
 
 /.idea
 /.rvmrc
@@ -21,3 +22,5 @@
 /.ruby-gemset
 /config/database.yml
 faraday.log
+/redis.pid.lock
+/dump.rdb

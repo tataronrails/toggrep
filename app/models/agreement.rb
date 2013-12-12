@@ -9,15 +9,21 @@ class Agreement < ActiveRecord::Base
     canceled
   )
 
-  scope :user_agreements, -> (user) { where('manager_id OR worker_id = ?', user) }
-
   belongs_to :manager, class_name: User
   belongs_to :worker, class_name: User
+  has_many :violation_checks
 
   validates :limit_min, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :limit_max, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :started_at, presence: true
   validates :ended_at, presence: true
+
+  scope :active, -> {
+    where('? between started_at and ended_at', Date.today)
+  }
+  scope :user_agreements, -> (user) {
+    where('manager_id OR worker_id = ?', user)
+  }
 
   state_machine :state, :initial => :proposed do
 

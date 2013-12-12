@@ -16,6 +16,9 @@ gem 'high_voltage'
 gem 'state_machine'
 gem 'andand'
 gem 'select2-rails'
+gem 'resque'
+gem 'resque-scheduler'
+gem 'redis-server'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
