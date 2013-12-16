@@ -11,7 +11,7 @@ class Agreement < ActiveRecord::Base
 
   belongs_to :manager, class_name: User
   belongs_to :worker, class_name: User
-  belongs_to :project
+  # belongs_to :project
 
   #validates :state, presence: true, include: {in: STATES}
   #validates :limit_min, presence: true, numericality: { only_integer: true, greater_than: 0 }
