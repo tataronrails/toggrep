@@ -1,11 +1,15 @@
 = simple_form_for @user do |f|
   .ui.three.column.grid
     .column
-      .ui.fluid.form.segment
+      .ui.form.segment
         %h3.ui.header Edit
         .field
           = "Email: #{@user.email}"
+        .ui.divider
         .field
           = f.input :toggl_api_key
         .field
-          = f.button :submit, "Update User", class: "small ui purple button"
+          .ui.buttons
+            = f.button :submit, "Update", class: "ui purple button"
+            .ui.or
+            = link_to 'Show', @user, class: "ui teal button"
