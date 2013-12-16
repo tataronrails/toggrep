@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
+  load_resource :except => :show
+  authorize_resource
+
   def show
-    @user = current_user
+    @user = User.find(params[:id])
     @datas = @user.toggl_me_request(true) unless @user.toggl_api_key.blank?
   end
 

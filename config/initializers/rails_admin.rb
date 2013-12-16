@@ -3,9 +3,7 @@
 
 RailsAdmin.config do |config|
 
-  config.authorize_with do
-    redirect_to main_app.user_url(current_user) unless warden.user.admin?
-  end
+  config.authorize_with :cancan, Ability
 
   ################  Global configuration  ################
 
