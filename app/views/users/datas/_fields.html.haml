@@ -1,7 +1,9 @@
 - if fields.any?
-  %ul
-    - fields.each do |field|
-      %li
-        %strong
-          = "#{field[0]}:"
-        = field[1]
+  - fields.each do |field|
+    %table.ui.two.column.basic.definition.table
+      %tbody
+        %tr
+          %td
+            = field[0]
+          %td
+            = field[1]

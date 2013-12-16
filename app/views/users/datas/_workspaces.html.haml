@@ -1,6 +1,9 @@
-- if workspaces.any?
-  %ul
-    - workspaces.each do |workspace|
-      - workspace.select!{|k| %w(name).include?(k)}.values.each do |field|
-        %li
-          = field
+- if @workspaces
+  - @workspaces.each do |workspace|
+    %ul.list
+      %li
+        = workspace.name
+        - workspace.projects.each do |project|
+          %ul
+            %li
+              = project

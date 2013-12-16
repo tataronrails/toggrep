@@ -14,10 +14,12 @@
     - if current_user
       .item
         = link_to current_user, current_user
-      .item
-        = link_to 'logout', destroy_user_session_path, :method => 'get'
+      %a.item{:href => user_path(current_user)}
+        profile
+      %a.item{:href => destroy_user_session_path, :method => 'get'}
+        logout
     - else
-      .item
-        = link_to "Sign up", new_user_registration_path
-      .item
-        = link_to "Sign in", new_user_session_path
+      %a.item{:href => new_user_registration_path}
+        Sign up
+      %a.item{:href => new_user_session_path}
+        Sign in

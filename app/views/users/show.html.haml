@@ -1,23 +1,26 @@
-- if can? :change, @user
-  %p
-    = link_to "Edit", edit_user_path(@user)
-%p
-  %strong User:
-  = @user
-  - if can? :read_details, @user
-    %p
-      %strong Toggl API:
-      = @user.toggl_api_key
+.ui.two.column.grid
+  .column
+    .ui.pointing.secondary.demo.menu
+      %a.red.active.item{"data-tab" => "personal"} Personal
+      %a.green.item{"data-tab" => "projects"} Projects
+    - if can? :read_details, @user
+      .ui.active.tab.segment{"data-tab" => "personal"}
+        .ui.ribbon.label
+          Personal data
+        - if @datas
+          = render partial: '/users/datas/fields', locals: {fields: @datas.except('projects','workspaces')}
+      .ui.tab.segment{"data-tab" => "projects"}
+        .ui.ribbon.label
+          Projects
+        = render partial: '/users/datas/workspaces'
+    .ui.segment
+      .ui.ribbon.label
+        Toggl API
+      - if can? :read_details, @user
+        %p
+          = @user.toggl_api_key
+      .ui.divider
+      - if can? :change, @user
+        = link_to "Edit", edit_user_path(@user), class: "ui purple button"
+      = link_to "Back", :back, class: "ui teal button"
 
-    - if @datas
-      %h3
-        = 'Персональные данные'
-      = render partial: '/users/datas/fields', locals: {fields: @datas.except('projects','workspaces')}
-
-      %h3
-        = 'Проекты'
-      = render partial: '/users/datas/projects', locals: {projects: @datas['projects']}
-
-      %h3
-        = 'Рабочие области'
-      = render partial: '/users/datas/workspaces', locals: {workspaces: @datas['workspaces']}
