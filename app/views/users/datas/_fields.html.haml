@@ -1,0 +1,7 @@
+- if fields.any?
+  %ul
+    - fields.each do |field|
+      %li
+        %strong
+          = "#{field[0]}:"
+        = field[1]

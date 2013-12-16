@@ -1,34 +1,23 @@
-%strong Title:
+- if can? :change, @user
+  %p
+    = link_to "Edit", edit_user_path(@user)
 %p
-  = @user.email
-%strong Toggl API
-%p
-  = @user.toggl_api_key
-%p
-  = link_to "Edit", edit_user_path(@user)
+  %strong User:
+  = @user
+  - if can? :read_details, @user
+    %p
+      %strong Toggl API:
+      = @user.toggl_api_key
 
-- if @datas
-  %h1
-    = 'Персональные данные'
-  - @datas.except('projects','workspaces').each do |field|
-    %ul
-      %li
-        = field[0]
-        = '='
-        = field[1]
+    - if @datas
+      %h3
+        = 'Персональные данные'
+      = render partial: '/users/datas/fields', locals: {fields: @datas.except('projects','workspaces')}
 
-  %h1
-    = 'Проекты'
-  - @datas['projects'].each do |project|
-    %ul
-      - project.select!{|k| %w(name).include?(k)}.values.each do |field|
-        %li
-          = field
+      %h3
+        = 'Проекты'
+      = render partial: '/users/datas/projects', locals: {projects: @datas['projects']}
 
-  %h1
-    = 'Рабочие области'
-  - @datas['workspaces'].each do |workspace|
-    %ul
-      - workspace.select!{|k| %w(name).include?(k)}.values.each do |field|
-        %li
-          = field
+      %h3
+        = 'Рабочие области'
+      = render partial: '/users/datas/workspaces', locals: {workspaces: @datas['workspaces']}

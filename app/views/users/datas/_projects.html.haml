@@ -1,0 +1,6 @@
+- if projects.any?
+  %ul
+    - projects.each do |project|
+      - project.select!{|k| %w(name).include?(k)}.values.each do |field|
+        %li
+          = field
