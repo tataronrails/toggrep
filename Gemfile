@@ -16,6 +16,7 @@ gem 'state_machine'
 gem 'andand'
 gem 'select2-rails'
 gem 'resque'
+gem 'resque_mailer'
 gem 'resque-scheduler'
 gem 'redis-server'
 
