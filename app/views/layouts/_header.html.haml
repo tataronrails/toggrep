@@ -1,25 +1,26 @@
-.ui.large.purple.menu
-  .header.item
-    %b ToggRep
-  %a.item{:href => page_path(:projects)}
-    %i.fa.fa-briefcase
-    Projects
-  %a.item{:href => page_path(:reports)}
-    %i.fa.fa-bullhorn
-    Reports
-  %a.item{:href => page_path(:workers)}
-    %i.fa.fa-users
-    Workers
-  .right.menu
-    - if current_user
-      .item
-        = link_to current_user, current_user
-      %a.item{:href => user_path(current_user)}
-        profile
-      %a.item{:href => destroy_user_session_path, :method => 'get'}
-        logout
-    - else
-      %a.item{:href => new_user_registration_path}
-        Sign up
-      %a.item{:href => new_user_session_path}
-        Sign in
+.ui.menu
+  .container
+    %h1.item
+      %b ToggRep
+    %a.item{:href => page_path(:projects)}
+      %i.fa.fa-briefcase
+      Projects
+    %a.item{:href => page_path(:reports)}
+      %i.fa.fa-bullhorn
+      Reports
+    %a.item{:href => page_path(:workers)}
+      %i.fa.fa-users
+      Workers
+    .right.menu
+      - if current_user
+        = link_to current_user, class: 'item' do
+          .ui.mini.image
+            = gravatar_for current_user
+        = link_to current_user, current_user, class: 'item'
+        %a.item{:href => destroy_user_session_path, :method => 'get'}
+          logout
+      - else
+        %a.item{:href => new_user_registration_path}
+          Sign up
+        %a.item{:href => new_user_session_path}
+          Sign in

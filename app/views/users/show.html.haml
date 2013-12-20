@@ -15,6 +15,10 @@
         = render partial: '/users/datas/workspaces'
     .ui.segment
       .ui.ribbon.label
+        You
+      = render partial: '/users/datas/you'
+      .ui.divider
+      .ui.ribbon.label
         Toggl API
       - if can? :read_details, @user
         %p
@@ -23,4 +27,3 @@
       - if can? :change, @user
         = link_to "Edit", edit_user_path(@user), class: "ui purple button"
       = link_to "Back", :back, class: "ui teal button"
-

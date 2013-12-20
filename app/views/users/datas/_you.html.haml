@@ -1,0 +1,11 @@
+%table.ui.collapsing.table
+  %tr
+    %td
+      = gravatar_for @user
+    %td
+      %h4.ui.header
+        .content
+          = current_user.email
+          .sub.header
+            Using your photo from
+            = link_to 'gravatar.com', 'http://gravatar.com/', target: '_blank'
