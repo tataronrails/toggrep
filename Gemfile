@@ -30,6 +30,26 @@ gem 'jbuilder', '~> 1.2'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'rb-inotify', require: false
+  gem 'rb-fsevent', require: false
+  gem 'rb-fchange', require: false
+  gem 'guard'
+  gem 'guard-bundler'
+  gem 'guard-zeus'
+  gem 'guard-rspec', require: false
+  gem 'guard-livereload', require: false
+end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'factory_girl_rails', require: false
+  gem 'faker'
+  gem 'fuubar'
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'shoulda-matchers'
 end
 
 group :doc do
