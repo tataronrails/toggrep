@@ -1,5 +1,44 @@
 # TOGGREP
 
+## Setup Development Environment
+
+Clone repository
+
+    git clone git@github.com:tataronrails/toggrep.git
+
+Switch to project dir
+
+    cd toggrep
+
+Install all required gems with bundler
+
+    bundle install
+
+Run rails server
+
+    rails server
+
+## Setup Testing Environment
+
+We use zeus to speed up testing sice it preloads rails environment.
+We also use guard to track file changes and run only needed tests instead of full suite.
+
+Create database
+
+    RAILS_ENV=test bundle exec rake db:create db:migrate
+
+Install zeus
+
+    gem install zeus
+
+## Running Testing Environment
+
+In separate terminal windows:
+
+    bundle exec zeus start
+    bundle exec guard start
+    zeus rspec spec
+
 ## Автоматическая проверка работников на нарушения
 
 ### Запуск автоматической проверки
