@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   end
 
   def to_s
-    email
+    toggl_user.andand.to_s || email.presence || 'User'
   end
 
   private
