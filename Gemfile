@@ -15,6 +15,7 @@ gem "font-awesome-rails"
 gem 'high_voltage'
 gem 'state_machine'
 gem 'jquery-turbolinks'
+gem 'andand'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
