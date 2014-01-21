@@ -1,0 +1,9 @@
+%h1 Edit Agreement
+%p Manager: #{@agreement.manager.toggl_user.fullname}
+%p Worker: #{@agreement.worker.toggl_user.fullname}
+%p Started at: #{@agreement.started_at.to_s}
+%p Ended at: #{@agreement.ended_at.to_s}
+= simple_form_for @agreement do |f|
+  = f.input :limit_min
+  = f.input :limit_max
+  = f.button :submit

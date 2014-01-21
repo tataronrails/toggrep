@@ -12,7 +12,10 @@ class TogglUser < ActiveRecord::Base
     datas = response.slice(:id, :email, :fullname)
     datas[:uid] = datas[:id]
     datas.delete(:id)
-    update_attributes(datas)
+    attrs = ActionController::Parameters.new(datas).permit(
+      %w(uid email fullname)
+    )
+    update_attributes(attrs)
   end
 
 end

@@ -1,0 +1,11 @@
+%h1 Agreement
+%p worker: #{@agreement.worker.toggl_user.fullname}
+%p manager: #{@agreement.manager.toggl_user.fullname}
+%p limit_min: #{@agreement.limit_min}
+%p limit_max: #{@agreement.limit_max}
+%p started_at: #{@agreement.started_at}
+%p ended_at: #{@agreement.ended_at}
+%p state: #{@agreement.state}
+- %w(accept reject edit cancel).each do |event_name|
+  - if can? event_name.to_sym, @agreement
+    %p= link_to event_name.capitalize, [event_name, @agreement]

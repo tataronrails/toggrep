@@ -33,6 +33,11 @@ class User < ActiveRecord::Base
     toggl_user.andand.to_s || email.presence || 'User'
   end
 
+  def self.find_by_toggl_id(id)
+    t_user = TogglUser.find_by_uid(id)
+    t_user.user if t_user
+  end
+
   private
 
   def sync_toggl_user!

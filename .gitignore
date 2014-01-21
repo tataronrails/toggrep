@@ -17,5 +17,7 @@
 
 /.idea
 /.rvmrc
+/.ruby-version
+/.ruby-gemset
 /config/database.yml
 faraday.log

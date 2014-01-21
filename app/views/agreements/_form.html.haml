@@ -1,0 +1,35 @@
+- content_for(:scripts) do
+  :coffeescript
+    projectUsers = ->
+      document.getElementById("agreement_worker_id").options.length = 0
+      val = $('#agreement_project_id').val()
+      $.getJSON "/toggl/project_users", {project_id: val}, (response) ->
+        $.each response, (key, value) ->
+          $("#agreement_worker_id").append $("<option></option>").attr("value", key).text(value)
+    addProjects = ->
+      $.getJSON "/toggl/projects", (response) ->
+        document.getElementById("agreement_project_id").options.length = 0
+        $.each response, (index) ->
+          optgroup = $('<optgroup></optgroup>')
+          optgroup.attr('label',response[index][0])
+          $.each response[index][1], (i)->
+            option = $("<option></option>")
+            option.val(response[index][1][i]['id'])
+            option.text(response[index][1][i]['name'])
+            optgroup.append(option)
+          $("#agreement_project_id").append(optgroup)
+        projectUsers()
+    $ ->
+      addProjects()
+      $("#agreement_project_id").change ->
+        projectUsers()
+
+= simple_form_for @agreement do |f|
+  = f.input :project_id, as: :select
+  = f.input :worker_id, as: :select
+  = f.input :limit_min
+  = f.input :limit_max
+  = f.input :started_at
+  = f.input :ended_at
+  = f.button :submit
+  .modal

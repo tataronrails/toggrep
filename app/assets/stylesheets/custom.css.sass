@@ -15,6 +15,12 @@ body
   text-rendering: optimizeLegibility
   min-width: 320px
 
+  &.loading
+    overflow: hidden
+
+    .modal
+      display: block
+
 .ui.button
   font-weight: normal
   text-decoration: none
@@ -39,3 +45,13 @@ a
       top: 0.25em
       bottom: 0.25em
     width: 4em
+
+.modal
+  display: none
+  position: fixed
+  z-index: 1000
+  top: 0
+  left: 0
+  height: 100%
+  width: 100%
+  background: rgba(255, 255, 255, 0.8) url('/assets/ajax-loader.gif') 50% 50% no-repeat

@@ -28,11 +28,28 @@ class Ability
     can :read, User
     can :read_details, User, id: user.id
     can :change, User, id: user.id
+    can :create, Agreement
+    can :read, Agreement do |agreement|
+      agreement.worker == user || agreement.manager == user
+    end
+    can :update, Agreement do |agreement|
+      agreement.can_be_changed_by_user?(user)
+    end
+    can :accept, Agreement do |agreement|
+      agreement.can_be_accepted_by_user?(user)
+    end
+    can :reject, Agreement do |agreement|
+      agreement.can_be_rejected_by_user?(user)
+    end
+    can :cancel, Agreement do |agreement|
+      agreement.can_be_canceled_by_user?(user)
+    end
+
   end
 
   def super_user
     can :access, :rails_admin
-    can :manage, :all
+    can :manage, :crud
   end
 
   def change_aliases!
@@ -42,7 +59,7 @@ class Ability
     alias_action :edit, :to => :update
     alias_action :destroy, :to => :delete
     alias_action :update, :delete, :to => :change
-    alias_action :create, :read, :change, :to => :manage
+    alias_action :create, :read, :change, :to => :crud
   end
 
 end

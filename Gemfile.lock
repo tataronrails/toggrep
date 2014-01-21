@@ -30,7 +30,7 @@ GEM
     atomic (1.1.14)
     awesome_print (1.1.0)
     bcrypt-ruby (3.1.2)
-    better_errors (1.0.1)
+    better_errors (1.1.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
@@ -56,24 +56,21 @@ GEM
     execjs (2.0.2)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
-    font-awesome-rails (4.0.3.0)
+    font-awesome-rails (4.0.3.1)
       railties (>= 3.2, < 5.0)
-    haml (4.0.4)
+    haml (4.0.5)
       tilt
     hashie (2.0.5)
-    high_voltage (2.0.0)
+    high_voltage (2.1.0)
     hike (1.2.3)
-    i18n (0.6.5)
-    jbuilder (1.5.2)
+    i18n (0.6.9)
+    jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-turbolinks (2.0.1)
-      railties (>= 3.1.0)
-      turbolinks
-    jquery-ui-rails (4.1.0)
+    jquery-ui-rails (4.1.1)
       railties (>= 3.1.0)
     json (1.8.1)
     kaminari (0.15.0)
@@ -88,7 +85,7 @@ GEM
     multi_json (1.8.2)
     multipart-post (1.2.0)
     nested_form (0.3.2)
-    nokogiri (1.6.0)
+    nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
     polyglot (0.3.3)
@@ -125,12 +122,12 @@ GEM
       activesupport (= 4.0.0)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.1.0)
+    rake (10.1.1)
     rdoc (3.12.2)
       json (~> 1.4)
     remotipart (1.2.1)
     safe_yaml (0.9.7)
-    sass (3.2.12)
+    sass (3.2.13)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
@@ -138,9 +135,11 @@ GEM
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
+    select2-rails (3.5.2)
+      thor (~> 0.14)
     semantic-ui-sass (0.9.5.0)
       sass (~> 3.2)
-    simple_form (3.0.0)
+    simple_form (3.0.1)
       actionpack (>= 4.0.0, < 4.1)
       activemodel (>= 4.0.0, < 4.1)
     sprockets (2.10.1)
@@ -165,10 +164,8 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (1.3.1)
-      coffee-rails
     tzinfo (0.3.38)
-    uglifier (2.3.1)
+    uglifier (2.4.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     warden (1.2.3)
@@ -191,15 +188,14 @@ DEPENDENCIES
   high_voltage
   jbuilder (~> 1.2)
   jquery-rails
-  jquery-turbolinks
   rails (= 4.0.0)
   rails_admin
   sass-rails (~> 4.0.0)
   sdoc
+  select2-rails
   semantic-ui-sass (~> 0.9.5.0)
   simple_form
   sqlite3
   state_machine
   toggl_api
-  turbolinks
   uglifier (>= 1.3.0)

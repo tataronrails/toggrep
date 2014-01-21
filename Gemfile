@@ -11,11 +11,11 @@ gem 'cancan'
 gem 'faraday', '~> 0.8.7'
 gem 'awesome_print', '~> 1.1.0'
 gem 'semantic-ui-sass', '~> 0.9.5.0'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 gem 'high_voltage'
 gem 'state_machine'
-gem 'jquery-turbolinks'
 gem 'andand'
+gem 'select2-rails'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -34,9 +34,6 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
