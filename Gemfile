@@ -38,6 +38,13 @@ group :development do
   gem 'guard-zeus'
   gem 'guard-rspec', require: false
   gem 'guard-livereload', require: false
+
+  # Pronto environment
+  gem 'pronto', require: false
+  gem 'pronto-rubocop', require: false
+  gem 'pronto-flay', require: false
+  gem 'pronto-rails_best_practices', require: false
+  gem 'pronto-brakeman', require: false
 end
 
 group :development, :test do
