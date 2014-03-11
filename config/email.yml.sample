@@ -1,0 +1,25 @@
+development:
+  delivery_method: :smtp
+  raise_delivery_errors: true
+  smtp_settings:
+    :address: 127.0.0.1
+    :port: 1025
+    :authentication: plain
+    :user_name: user
+    :password: 123456789
+  default_url_options:
+    :host: localhost:3000
+  default_from: from@example.com
+
+production:
+  delivery_method: :smtp
+  raise_delivery_errors: true
+  smtp_settings:
+    :address: smtp.gmail.com
+    :port: 1025
+    :authentication: plain
+    :user_name: user
+    :password: 123456789
+  default_url_options:
+    :host: localhost:3000
+  default_from: from@example.com

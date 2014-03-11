@@ -20,7 +20,10 @@
 /.rvmrc
 /.ruby-version
 /.ruby-gemset
+
 /config/database.yml
+/config/email.yml
+
 faraday.log
 /redis.pid.lock
 /dump.rdb

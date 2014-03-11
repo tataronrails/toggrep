@@ -1,0 +1,5 @@
+%p Violation: #{ @violation_rule.description }
+%p Time: #{ @violation_check.created_at }
+%p Agreement #{ link_to "N#{@agreement.id}", agreement_url(@agreement) }
+%p Active time: #{ @agreement.started_at } to #{ @agreement.ended_at }
+%p Worker: #{ link_to @worker.toggl_user.fullname, user_url(@worker) }
