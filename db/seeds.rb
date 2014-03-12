@@ -1,7 +1,5 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+ViolationRule.find_or_create_by({
+  condition: 'user.time_entries.last >= 1.day.ago',
+  assert_each: '1.day',
+  description: 'User has no time entries at Toggl.com for the last day'
+})
