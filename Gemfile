@@ -29,6 +29,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
 
 group :development do
+  gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rb-inotify', require: false
