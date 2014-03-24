@@ -16,7 +16,7 @@ class AgreementsController < ApplicationController
   def create
     @agreement.manager = current_user
     if @agreement.save
-      NotificationMailer.new_agreement_email(@agreement, @agreement.worker).deliver
+      NotificationMailer.new_agreement(@agreement.id).deliver
       redirect_to @agreement
     end
   end

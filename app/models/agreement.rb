@@ -48,6 +48,34 @@ class Agreement < ActiveRecord::Base
     end
   end
 
+  def acceptable_pace?(pace)
+    return true if self.started_at > pace.ago
+
+    duration = (self.ended_at - self.started_at).to_i
+    past_duration = (DateTime.now - pace.ago.to_date).to_i
+    min_duration = self.limit_min.hour / duration * past_duration
+
+    duration = worker_timings_by_project
+      .select{ |field| field[:at] > pace.ago}
+      .map(&:duration)
+      .sum
+
+    duration >= min_duration
+  end
+
+  def worker_timings_by_project
+    client = Toggl::Base.new(self.worker.toggl_api_key)
+    entries = []
+    response = client.me(true)
+    response.time_entries
+      .presence
+      .select{ |field| field[:pid] == self.project_id }
+      .each do |field|
+        entries << field if field['duration'] > 0
+      end
+    entries
+  end
+
   def can_be_accepted_by_user?(user)
     if user == worker && user == manager
       can_accept?

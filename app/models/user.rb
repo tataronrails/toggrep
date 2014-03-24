@@ -44,16 +44,6 @@ class User < ActiveRecord::Base
     TogglUser.find_by_uid(id).andand.user
   end
 
-  def time_entries
-    client = Toggl::Base.new(toggl_api_key)
-    entries = []
-    response = client.me(true)
-    response.time_entries.presence.each do |field|
-      field.select!{ |k,v| entries << v if %w(stop).include?(k) && field['duration'] > 0 }
-    end
-    entries
-  end
-
   private
 
   def sync_toggl_user!
