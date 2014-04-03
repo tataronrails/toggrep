@@ -1,17 +1,37 @@
 Toggrep::Application.routes.draw do
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   devise_for :users
-  resources :users, :only => [:edit, :show, :update, :destroy]
-  resources :agreements do
+
+  resources :users, :only => [:edit, :show, :update, :destroy] do
+    User::ROLES.each do |role|
+      namespace role, module: nil, shallow_path: nil, role: role do
+        resources :agreements, only: :index do
+          collection do
+            Agreement::FILTERS.each do |filter|
+              get ':filter',
+                :action => :index, :as => filter, filter => true,
+                :constraints => { :filter => filter }
+            end
+          end
+        end
+      end
+    end
+  end
+
+  resources :agreements, except: :index do
     member do
       get :accept, :reject, :cancel
     end
   end
+
   scope :toggl do
     get :project_users, to: 'toggl_projects#project_users'
     get :projects, to: 'toggl_projects#projects'
   end
+
   root :to => 'high_voltage/pages#show', id: 'root'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

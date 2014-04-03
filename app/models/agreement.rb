@@ -9,6 +9,14 @@ class Agreement < ActiveRecord::Base
     canceled
   )
 
+  FILTERS = %w(
+    all
+    newest
+    discussing
+    current
+    past
+  )
+
   belongs_to :manager, class_name: User
   belongs_to :worker, class_name: User
   has_many :violation_checks
@@ -18,8 +26,17 @@ class Agreement < ActiveRecord::Base
   validates :started_at, presence: true
   validates :ended_at, presence: true
 
-  scope :active, -> {
+  scope :current, -> {
     where('? between started_at and ended_at', Date.today)
+  }
+  scope :past, -> {
+    where('started_at and ended_at < ?', Date.today)
+  }
+  scope :discussing, -> {
+    where(state: :changed_by_worker)
+  }
+  scope :newest, -> {
+    where(state: :proposed)
   }
   scope :user_agreements, -> (user) {
     where('manager_id OR worker_id = ?', user)

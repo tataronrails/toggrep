@@ -5,8 +5,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   ALLOWED_FIELDS = %w(api_token email fullname projects workspaces)
+  ROLES = %w(worker manager)
 
   has_one :toggl_user, dependent: :destroy
+  has_many :managing_agreements, class_name: 'Agreement', foreign_key: 'manager_id'
+  has_many :working_agreements, class_name: 'Agreement', foreign_key: 'worker_id'
 
   before_save :build_toggl_user, :unless => :toggl_user
   before_save :sync_toggl_user!, :if => :toggl_api_key_changed?
