@@ -1,0 +1,14 @@
+.ui.three.column.grid
+  .column
+    .ui.fluid.form.segment
+      %h2.ui.header You're almost done! Now create a password to securely access your account.
+      = simple_form_for(resource, as: resource_name, url: confirm_path) do |f|
+        = devise_error_messages!
+        .field
+          = f.input :password, required: true, autofocus: true
+        .field
+          = f.input :password_confirmation, required: true
+        .field
+          = f.input :confirmation_token, as: :hidden, value: @confirmation_token
+
+        = f.button :submit, :label => 'Confirm Account', class: 'ui small purple button'

@@ -1,19 +1,18 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
   ALLOWED_FIELDS = %w(api_token email fullname projects workspaces)
   ROLES = %w(worker manager)
 
-  has_one :toggl_user, dependent: :destroy
+  has_one :toggl_user, dependent: :destroy, inverse_of: :user
   has_many :managing_agreements, class_name: 'Agreement', foreign_key: 'manager_id'
   has_many :working_agreements, class_name: 'Agreement', foreign_key: 'worker_id'
 
-  before_save :build_toggl_user, :unless => :toggl_user
-  before_save :sync_toggl_user!, :if => :toggl_api_key_changed?
+  before_update :sync_toggl_user!, if: :toggl_api_key_changed?
 
+  validates :password, presence: true, length: { minimum: 8 }, confirmation: true, on: :update
+  validates :password_confirmation, presence: true, on: :update
   validates :toggl_api_key,
     presence: true,
     length: {is: 32},
@@ -47,10 +46,14 @@ class User < ActiveRecord::Base
     TogglUser.find_by_uid(id).andand.user
   end
 
-  private
+private
 
   def sync_toggl_user!
     toggl_user.sync!(toggl_api_key)
+  end
+
+  def password_required?
+    super if confirmed?
   end
 
 end
