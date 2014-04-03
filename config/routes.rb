@@ -1,7 +1,13 @@
 Toggrep::Application.routes.draw do
 
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-  devise_for :users
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
+  devise_for :users, controllers: { confirmations: 'users/confirmations',
+                                    registrations: 'users/registrations'}
+
+  devise_scope :user do
+    patch '/confirm' => 'users/confirmations#confirm'
+  end
 
   resources :users, :only => [:edit, :show, :update, :destroy] do
     User::ROLES.each do |role|
