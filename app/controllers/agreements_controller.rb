@@ -1,78 +1,71 @@
-class AgreementsController < ApplicationController
+class AgreementsController < ResourcesController
 
-  before_action :load_agreement, only: :create
+  belongs_to :user, optional: true
 
-  load_and_authorize_resource
-
-  before_action :find_agreement, except: [:new, :create, :index]
-
-  def new
-    @agreement = Agreement.new(limit_min: 40,
-                               limit_max: 40,
-                               started_at: Date.today.next_week.at_beginning_of_week,
-                               ended_at: Date.today.next_week.at_end_of_week)
+  ( Agreement::FILTERS - %w(all) ).each do |filter|
+    has_scope filter.to_sym, type: :boolean
   end
 
-  def create
-    @agreement.manager = current_user
-    if @agreement.save
-      NotificationMailer.new_agreement(@agreement.id).deliver
-      redirect_to @agreement
-    end
-  end
-
-  def index
-    @agreements = Agreement.user_agreements(current_user)
-  end
-
-  def edit
-
-  end
-
-  def update
-    if @agreement.update(agreements_params)
-      if @agreement.changed_by_worker?
-        @agreement.change_by_manager
-      else
-        @agreement.change_by_worker
-      end
-      redirect_to @agreement
-    else
-      render 'edit'
-    end
-  end
-
-  def show
-
-  end
+  before_filter :set_manager, only: :create
+  before_filter :set_default_attributes, only: :new
+  after_filter :notify_worker, only: :create
+  after_filter :update_state, only: :update
 
   def accept
-    @agreement.accept
-    redirect_to @agreement
+    resource.accept
+    redirect_to resource
   end
 
   def reject
-    @agreement.reject
-    redirect_to @agreement
+    resource.reject
+    redirect_to resource
   end
 
   def cancel
-    @agreement.cancel
-    redirect_to @agreement
+    resource.cancel
+    redirect_to resource
   end
 
   private
 
-  def load_agreement
-    @agreement = Agreement.new(agreements_params)
+  def permitted_params
+    params.permit(agreement: [:project_id, :worker_id, :limit_min, :limit_max, :started_at, :ended_at])
   end
 
-  def agreements_params
-    params.require(:agreement).permit(:project_id, :worker_id, :limit_min, :limit_max, :started_at, :ended_at)
+  def method_for_association_chain
+    case params[:role]
+    when 'worker' then
+      :working_agreements
+    when 'manager' then
+      :managing_agreements
+    else
+      super
+    end
   end
 
-  def find_agreement
-    @agreement = Agreement.find(params[:id])
+  def set_manager
+    resource.manager = current_user
+  end
+
+  def notify_worker
+    NotificationMailer.new_agreement_email(resource, resource.worker).deliver
+  end
+
+  def update_state
+    if resource.changed_by_worker?
+      resource.change_by_manager
+    else
+      resource.change_by_worker
+    end
+  end
+
+  def set_default_attributes
+    resource.assign_attributes({
+      limit_min: 40,
+      limit_max: 40,
+      started_at: Date.today.next_week.at_beginning_of_week,
+      ended_at: Date.today.next_week.at_end_of_week
+    })
   end
 
 end

@@ -19,6 +19,12 @@ gem 'resque'
 gem 'resque_mailer'
 gem 'resque-scheduler'
 gem 'redis-server'
+gem 'inherited_resources',
+  github: 'josevalim/inherited_resources',
+  ref: '5b61f8a58ab39ea8be11435e750ea90c6a5925af'
+gem 'has_scope',
+  github: 'plataformatec/has_scope',
+  ref: 'b62cea0d810f019f1a89a92da068f37077727662'
 
 gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.0'

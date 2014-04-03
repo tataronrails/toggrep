@@ -1,3 +1,19 @@
+GIT
+  remote: git://github.com/josevalim/inherited_resources.git
+  revision: 5b61f8a58ab39ea8be11435e750ea90c6a5925af
+  specs:
+    inherited_resources (1.4.1)
+      has_scope (~> 0.6.0.rc)
+      responders (~> 1.0.0.rc)
+
+GIT
+  remote: git://github.com/plataformatec/has_scope.git
+  revision: b62cea0d810f019f1a89a92da068f37077727662
+  specs:
+    has_scope (0.6.0.rc)
+      actionpack (>= 3.2, < 5)
+      activesupport (>= 3.2, < 5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -254,6 +270,8 @@ GEM
       daemon_controller (~> 0.2.6)
     remotipart (1.2.1)
     require_all (1.3.2)
+    responders (1.0.0)
+      railties (>= 3.2, < 5)
     resque (1.25.1)
       mono_logger (~> 1.0)
       multi_json (~> 1.0)
@@ -392,7 +410,9 @@ DEPENDENCIES
   guard-rspec
   guard-zeus
   haml
+  has_scope!
   high_voltage
+  inherited_resources!
   jbuilder (~> 1.2)
   jquery-rails
   pronto

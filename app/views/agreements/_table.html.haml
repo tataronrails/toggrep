@@ -1,0 +1,16 @@
+%table.ui.table{ border: '1' }
+  %tr
+    %th Dates
+    %th Duration
+    %th Manager
+    %th Worker
+    %th State
+    %th
+  - agreements.each do |a|
+    %tr
+      %td= "#{a.started_at.to_s} - #{a.ended_at.to_s}"
+      %td= "#{a.limit_min} - #{a.limit_max}"
+      %td= a.manager.toggl_user.fullname
+      %td= a.worker.toggl_user.fullname
+      %td= a.state
+      %td= link_to 'Show', agreement_path(a)
