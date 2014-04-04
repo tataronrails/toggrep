@@ -9,8 +9,10 @@ class User < ActiveRecord::Base
   has_many :managing_agreements, class_name: 'Agreement', foreign_key: 'manager_id'
   has_many :working_agreements, class_name: 'Agreement', foreign_key: 'worker_id'
 
-  before_update :sync_toggl_user!, :if => :toggl_api_key_changed?
+  before_update :sync_toggl_user!, if: :toggl_api_key_changed?
 
+  validates :password, presence: true, length: { minimum: 8 }, confirmation: true, on: :update
+  validates :password_confirmation, presence: true, on: :update
   validates :toggl_api_key,
     presence: true,
     length: {is: 32},
@@ -42,13 +44,6 @@ class User < ActiveRecord::Base
 
   def self.find_by_toggl_id(id)
     TogglUser.find_by_uid(id).andand.user
-  end
-
-  def password_match?
-    self.errors[:password] << 'can\'t be blank' if password.blank?
-    self.errors[:password_confirmation] << 'can\'t be blank' if password_confirmation.blank?
-    self.errors[:password_confirmation] << 'does not match password' if password != password_confirmation
-    password == password_confirmation && !password.blank?
   end
 
 private
