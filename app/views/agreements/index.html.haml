@@ -1,17 +1,20 @@
 .ui.grid
-  .twelve.wide.column
+  .sixteen.wide.column
     %h1
+      %i.circular.icon{class: (scope_role == :manager ? 'users' : 'user')}
       = scope_role == :manager ? 'Managing agreements' : 'Working agreements'
     .right
       - if scope_role == :manager
-        = button_to 'Working agreements', "#{polymorphic_path([current_user, :worker, :agreements])}/all", method: :get, class: 'ui small button'
+        = button_to 'Working agreements', "#{polymorphic_path([current_user, :worker, :agreements])}/all", method: :get, class: 'ui tiny button'
       - else
-        = button_to 'Managing agreements', "#{polymorphic_path([current_user, :manager, :agreements])}/all", method: :get, class: 'ui small button'
+        = button_to 'Managing agreements', "#{polymorphic_path([current_user, :manager, :agreements])}/all", method: :get, class: 'ui tiny button'
     .ui.pointing.secondary.menu
       - Agreement::FILTERS.each do |filter|
         = link_to "#{polymorphic_path([current_user, params[:role], :agreements])}/#{filter}", class: params[:filter] == filter ? 'red active item' : 'item' do
           = filter.humanize
-    .ui.segment
+    .ui.stacked.segment
       = render partial: 'table', locals: { agreements: @agreements }
     %p
-      = link_to 'New agreement', new_agreement_path, class: 'small ui purple button'
+      %a.ui.labeled.icon.small.teal.button{href: new_agreement_path}
+        New agreement
+        %i.text.file.outline.icon

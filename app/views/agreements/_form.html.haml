@@ -24,12 +24,20 @@
       $("#agreement_project_id").change ->
         projectUsers()
 
-= simple_form_for @agreement do |f|
-  = f.input :project_id, as: :select
-  = f.input :worker_id, as: :select
-  = f.input :limit_min
-  = f.input :limit_max
-  = f.input :started_at
-  = f.input :ended_at
-  = f.button :submit
-  .modal
+.ui.form.segment
+  = simple_form_for @agreement do |f|
+    .field
+      = f.input :project_id, as: :select
+    .field
+      = f.input :worker_id, as: :select
+    .field
+      = f.input :limit_min
+    .field
+      = f.input :limit_max
+    .field
+      = f.input :started_at
+    .field
+      = f.input :ended_at
+    .field
+      = f.button :submit, class: 'ui small teal button'
+    .modal

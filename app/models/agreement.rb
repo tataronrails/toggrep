@@ -26,6 +26,8 @@ class Agreement < ActiveRecord::Base
   validates :started_at, presence: true
   validates :ended_at, presence: true
 
+  default_scope order('started_at ASC')
+
   scope :current, -> {
     where('? between started_at and ended_at', Date.today)
   }
