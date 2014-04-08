@@ -13,6 +13,8 @@
     %td{class: state_class_index(a.state)}
       = a.state.humanize
     %td
+      = link_to a.violation_checks.count, [a, :violation_checks]
+    %td
       .two.fluid.ui.buttons
         - %w(accept reject).each do |event_name|
           - if can? event_name.to_sym, a

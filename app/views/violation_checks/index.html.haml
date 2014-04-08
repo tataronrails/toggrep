@@ -1,0 +1,7 @@
+.ui.grid
+  .twelve.wide.column
+    %h1
+      %i.circular.icon.legal
+      Agreement Violations
+    = render 'table', violation_checks: collection
+    = link_to 'Back', :back, class: 'ui teal button'
