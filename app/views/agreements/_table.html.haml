@@ -1,28 +1,18 @@
-%table.ui.table.segment
-  %thead
+%table.ui.table{ border: '1' }
+  %tr
+    %th Dates
+    %th Duration
+    %th Manager
+    %th Worker
+    %th State
+    %th Violations
+    %th
+  - agreements.each do |a|
     %tr
-      %th
-        %i.calendar.icon
-        Dates
-      %th
-        %i.time.basic.icon
-        Duration
-      %th
-        %i.users.icon
-        Manager
-      %th
-        %i.user.icon
-        Worker
-      %th
-        %i.flag.icon
-        State
-      %th
-      %th
-  %tbody
-    - if @agreements.any?
-      = render partial: 'table_row', locals: { agreements: @agreements }
-    - else
-      %tfoot
-        %tr
-          %th{colspan: '7'}
-            Nothing to show
+      %td= "#{a.started_at.to_s} - #{a.ended_at.to_s}"
+      %td= "#{a.limit_min} - #{a.limit_max}"
+      %td= a.manager.toggl_user.fullname
+      %td= a.worker.toggl_user.fullname
+      %td= a.state
+      %td= a.violation_checks.count
+      %td= link_to 'Show', agreement_path(a)

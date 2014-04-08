@@ -1,0 +1,8 @@
+.ui.grid
+  .twelve.wide.column
+    - if collection.present?
+      %h1 Agreement success violations
+      .ui.segment
+        = render 'table', violation_checks: collection
+    - else
+      %h1 There was no violations occured for this agreement

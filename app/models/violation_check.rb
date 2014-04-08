@@ -7,6 +7,10 @@ class ViolationCheck < ActiveRecord::Base
 
   validates :result, presence: true
 
+  scope :success, -> {
+    where(result: true)
+  }
+
   private
 
   def send_notification_mail
