@@ -1,11 +1,51 @@
-%h1 Agreement
-%p worker: #{@agreement.worker.toggl_user.fullname}
-%p manager: #{@agreement.manager.toggl_user.fullname}
-%p limit_min: #{@agreement.limit_min}
-%p limit_max: #{@agreement.limit_max}
-%p started_at: #{@agreement.started_at}
-%p ended_at: #{@agreement.ended_at}
-%p state: #{@agreement.state}
-- %w(accept reject edit cancel).each do |event_name|
-  - if can? event_name.to_sym, @agreement
-    %p= link_to event_name.capitalize, [event_name, @agreement]
+.ui.grid
+  .six.wide.column
+    %h1
+      %i.text.file.icon
+      Agreement
+      - if can? :update, @agreement
+        = link_to "Edit", edit_agreement_path(@agreement), class: 'ui mini button'
+    .ui.top.attached.center.aligned.segment{class: state_class_show(@agreement.state)}
+      - %w(accept reject cancel).each do |event_name|
+        - if can? event_name.to_sym, @agreement
+          - if event_name == 'accept'
+            = link_to event_name.capitalize, [event_name, @agreement], class: 'ui positive tiny button'
+          - else
+            = link_to event_name.capitalize, [event_name, @agreement], class: 'ui negative tiny button'
+    .ui.attached.segment
+      .ui.fluid.label
+        %i.flag.icon
+        State:
+        .detail
+          = @agreement.state.humanize
+      .ui.relaxed.celled.list
+        .item
+          %i.user.icon
+          Worker
+          .right.floated
+            = @agreement.worker.toggl_user.fullname
+        .item
+          %i.users.icon
+          Manager
+          .right.floated
+            = @agreement.manager.toggl_user.fullname
+        .item
+          %i.time.icon
+          Limit min
+          .right.floated
+            = @agreement.limit_min
+        .item
+          %i.vertically.flipped.time.icon
+          Limit max
+          .right.floated
+            = @agreement.limit_max
+        .item
+          %i.empty.checkbox.icon
+          Started at
+          .right.floated
+            = @agreement.started_at.to_s :long
+        .item
+          %i.checked.checkbox.icon
+          Ended at
+          .right.floated
+            = @agreement.ended_at.to_s :long

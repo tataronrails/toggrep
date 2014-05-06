@@ -1,9 +1,41 @@
-%h1 Edit Agreement
-%p Manager: #{@agreement.manager.toggl_user.fullname}
-%p Worker: #{@agreement.worker.toggl_user.fullname}
-%p Started at: #{@agreement.started_at.to_s}
-%p Ended at: #{@agreement.ended_at.to_s}
-= simple_form_for @agreement do |f|
-  = f.input :limit_min
-  = f.input :limit_max
-  = f.button :submit
+.ui.grid
+  .six.wide.column
+    %h1
+      %i.edit.sign.icon
+      Change agreement
+    .ui.top.attached.form.segment
+      = simple_form_for @agreement do |f|
+        .two.fields
+          .field
+            = f.input :limit_min
+          .field
+            = f.input :limit_max
+        .field
+          = f.button :submit, class: 'ui tiny teal button'
+    .ui.bottom.attached.segment
+      .ui.fluid.label
+        %i.flag.icon
+        State:
+        .detail
+          = @agreement.state.humanize
+      .ui.relaxed.celled.list
+        .item
+          %i.user.icon
+          Worker:
+          .right.floated
+            = @agreement.worker.toggl_user.fullname
+        .item
+          %i.users.icon
+          Manager:
+          .right.floated
+            = @agreement.manager.toggl_user.fullname
+        .item
+          %i.empty.checkbox.icon
+          Started at:
+          .right.floated
+            = @agreement.started_at.to_s :long
+        .item
+          %i.checked.checkbox.icon
+          Ended at:
+          .right.floated
+            = @agreement.ended_at.to_s :long
