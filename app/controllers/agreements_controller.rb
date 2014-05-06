@@ -48,7 +48,7 @@ class AgreementsController < ResourcesController
   end
 
   def notify_worker
-    NotificationMailer.new_agreement_email(resource, resource.worker).deliver
+    NotificationMailer.new_agreement(resource, resource.worker).deliver
   end
 
   def update_state
