@@ -1,6 +1,7 @@
 GIT
   remote: git://github.com/josevalim/inherited_resources.git
   revision: 5b61f8a58ab39ea8be11435e750ea90c6a5925af
+  ref: 5b61f8a58ab39ea8be11435e750ea90c6a5925af
   specs:
     inherited_resources (1.4.1)
       has_scope (~> 0.6.0.rc)
@@ -9,6 +10,7 @@ GIT
 GIT
   remote: git://github.com/plataformatec/has_scope.git
   revision: b62cea0d810f019f1a89a92da068f37077727662
+  ref: b62cea0d810f019f1a89a92da068f37077727662
   specs:
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
@@ -335,7 +337,7 @@ GEM
       rdoc (~> 4.0, < 5.0)
     select2-rails (3.5.2)
       thor (~> 0.14)
-    semantic-ui-sass (0.14.0.0)
+    semantic-ui-sass (0.15.5.0)
       sass (~> 3.2)
     sexp_processor (4.4.1)
     shoulda-matchers (2.5.0)
@@ -434,7 +436,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.0)
   sdoc
   select2-rails
-  semantic-ui-sass (~> 0.14.0.0)
+  semantic-ui-sass (~> 0.15.5.0)
   shoulda-matchers
   simple_form
   sqlite3
