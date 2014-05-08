@@ -1,17 +1,23 @@
-= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = f.error_notification
-  .ui.three.column.grid
-    .column
-      .ui.fluid.form.segment
+  .ui.stackable.grid
+    .five.wide.column
+      .ui.top.attached.fluid.form.segment
         %h3.ui.header Sign up
         .field
-          = f.input :email, :required => true, :autofocus => true
-        .field
-          = f.input :password, :required => true
-        .field
-          = f.input :password_confirmation, :required => true
+          = f.input :toggl_api_key, required: true, autofocus: true
 
-        = f.button :submit, "Sign up", class: "small ui purple button"
-      = render "devise/shared/links"
-
-
+        = f.button :submit, 'Sign up', class: 'small ui purple button'
+      .ui.bottom.attached.segment
+        = render 'devise/shared/links'
+    .eleven.wide.column
+      .ui.segment
+        %h4.ui.header Where i can find Toggl Api key?
+        %ol.ui.big.list
+          %li
+            Go to your
+            = link_to ' Toggl profile', 'https://www.toggl.com/app/#profile', target: '_blank'
+          %li
+            Copy your API token from this field (bottom of the page):
+          = image_tag 'apitoken.png', class: 'ui rounded image'
+          %li Paste in "Toggle api key" field

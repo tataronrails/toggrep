@@ -3,7 +3,7 @@
     projectUsers = ->
       document.getElementById("agreement_worker_id").options.length = 0
       val = $('#agreement_project_id').val()
-      $.getJSON "/toggl/project_users", {project_id: val}, (response) ->
+      $.getJSON "/toggl/projects/" + val + "/users", (response) ->
         $.each response, (key, value) ->
           $("#agreement_worker_id").append $("<option></option>").attr("value", key).text(value)
     addProjects = ->
