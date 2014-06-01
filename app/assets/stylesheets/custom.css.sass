@@ -1,17 +1,17 @@
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400,700)
+
 html
   font-size: 15px
-  height: 100%
 
 body
-  font-size: 15px
-  height: 100%
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif
+  width: 100%
+  font-family: 'Open Sans', Arial, sans-serif
   background: #FFFFFF
-  margin: 0px 10px 10px 10px
-  padding: 0px
+  margin: 0px auto
   color: #555555
   text-rendering: optimizeLegibility
-  min-width: 320px
+  min-width: 760px
+  max-width: 1200px
 
   &.loading
     overflow: hidden
@@ -19,19 +19,21 @@ body
     .modal
       display: block
 
-.ui.button
-  text-decoration: none
-
 a
-  color: #000000
+  color: #009FDA
   text-decoration: none
   -webkit-transition: color 0.3s ease
   transition: color 0.3s ease
+
   &:hover
-    color: purple
+    color: #00BAFF
 
 .list
   font-size: 16px
+
+h1
+  -webkit-margin-before: 0.47em
+  -webkit-margin-after: 0.47em
 
 #header
   .avatar
@@ -48,7 +50,7 @@ a
   left: 0
   height: 100%
   width: 100%
-  background: rgba(255, 255, 255, 0.8) url('/assets/ajax-loader.gif') 50% 50% no-repeat
+  background: rgba(255, 255, 255, 0.8) url('loader.gif') 50% 50% no-repeat
 
 .right
   float: right
