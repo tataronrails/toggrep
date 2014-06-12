@@ -4,7 +4,13 @@
 
     git clone git@github.com:tataronrails/toggrep.git
     cd toggrep
+    cp config/database.yml.sample \
+           config/database.yml
+    cp config/email.yml.sample \
+           config/email.yml
+    # Edit yaml files
     bundle install
+    bundle exec rake db:create db:migrate db:seed
     gem install zeus
 
 ## Running Development/Testing Environment
