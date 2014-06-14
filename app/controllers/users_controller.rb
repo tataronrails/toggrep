@@ -12,7 +12,7 @@ class UsersController < ApplicationController
         projects = []
         @datas['projects'].each do |project|
           projects << project.name if project.wid == workspace.id
-        end
+        end if @datas['projects']
         @workspaces << Hashie::Mash.new(name: workspace.name, projects: projects)
       end
     end
