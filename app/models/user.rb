@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
   def toggl_me_request(with_related_data = false)
     begin
-      client = Toggl::Base.new(self.toggl_api_key)
+      client = Toggl::Base.new(self.toggl_api_key, self.id)
       response = client.me(with_related_data)
       response.select { |k,v| ALLOWED_FIELDS.include?(k) }
     rescue StandardError
@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
 
   def sync_toggl_user!
     begin
-      toggl_user.sync!(toggl_api_key)
+      toggl_user.sync!(toggl_api_key, self.id)
     rescue Toggl::Forbidden
       false
     end

@@ -1,7 +1,7 @@
 class TogglProject
 
   def self.user_projects_by_role(user, role)
-    client = Toggl::Base.new(user.toggl_api_key)
+    client = Toggl::Base.new(user.toggl_api_key, user.id)
     response = client.me(true)
     toggl_projects = response.projects
     toggl_projects.select!(&:active)
@@ -16,8 +16,8 @@ class TogglProject
     end
   end
 
-  def self.project_users(api_key, project_id)
-    client = Toggl::Base.new(api_key)
+  def self.project_users(user, project_id)
+    client = Toggl::Base.new(user.toggl_api_key, user.id)
     client.project_users(project_id)
   end
 
