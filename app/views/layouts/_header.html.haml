@@ -1,7 +1,7 @@
 #header.ui.menu
   .container
     = link_to 'ToggRep', root_path, class: 'item'
-    - if current_user
+    - if current_user && !incorrect_toggl_api_key?
       = link_to 'Agreements', "#{user_manager_agreements_path(current_user)}/all", class: 'item'
     .right.menu
       - if current_user

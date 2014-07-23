@@ -1,7 +1,7 @@
 Toggrep::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-  devise_for :users
+  devise_for :users, controllers: { sessions: "sessions" }
 
   resources :users, :only => [:edit, :show, :update, :destroy] do
     User::ROLES.each do |role|
@@ -72,7 +72,7 @@ Toggrep::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
