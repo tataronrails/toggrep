@@ -25,6 +25,8 @@ class Agreement < ActiveRecord::Base
   validates :limit_max, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :started_at, presence: true
   validates :ended_at, presence: true
+  validates_presence_of :manager_id
+  validates_presence_of :worker_id
 
   default_scope order('started_at ASC')
 
@@ -45,6 +47,9 @@ class Agreement < ActiveRecord::Base
   }
 
   state_machine :state, :initial => :proposed do
+    after_transition  do |agreement, transition|
+      agreement.notify_users transition
+    end
 
     event :accept do
       transition [:proposed, :changed_by_worker, :changed_by_manager] => :accepted
@@ -129,4 +134,9 @@ class Agreement < ActiveRecord::Base
     end
   end
 
+  def notify_users(transition)
+    [manager, worker].uniq.compact.each do |user|
+      NotificationMailer.agreement_state_changed(self, user.email, transition.from, transition.to).deliver
+    end
+  end
 end
