@@ -17,4 +17,11 @@ class NotificationMailer < ActionMailer::Base
     @url = url_for(@agreement)
     mail(to: @agreement.worker.email, subject: 'Toggrep notification')
   end
+
+  def agreement_state_changed(agreement, email, from_status, to_status)
+    @agreement = agreement
+    @from = from_status
+    @to = to_status
+    mail(to: email, subject: 'Toggrep notification')
+  end
 end
