@@ -1,5 +1,5 @@
 - agreements.each do |a|
-  %tr{class: highlight_index(a.state)}
+  %tr{ class: [highlight_index(a.state), :pointer], data: { link: "#{ agreement_path(a) }" } }
     %td
       = "#{a.started_at.to_s :short} - #{a.ended_at.to_s :short}"
     %td
