@@ -1,0 +1,22 @@
+%table.ui.table.segment
+  %thead
+    %tr
+      %th
+        %i.icon
+        Title
+      %th
+        %i.time.basic.icon
+        Date
+  %tbody
+    - if projects
+      - projects.each do |project|
+        %tr
+          %td
+            = project.name
+          %td
+            = Time.parse(project.created_at).to_s :short
+    - else
+      %tfoot
+        %tr
+          %th{colspan: '2'}
+            Nothing to show

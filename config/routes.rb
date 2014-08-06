@@ -19,6 +19,8 @@ Toggrep::Application.routes.draw do
     end
   end
 
+  resources :projects, only: :index
+
   resources :agreements, except: :index do
     member do
       get :accept, :reject, :cancel
