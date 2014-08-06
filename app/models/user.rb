@@ -21,10 +21,24 @@ class User < ActiveRecord::Base
 
   def toggl_me_request(with_related_data = false)
     begin
-      client = Toggl::Base.new(self.toggl_api_key)
+      client = Toggl::Base.new(toggl_api_key)
       response = client.me(with_related_data)
       response.select { |k,v| ALLOWED_FIELDS.include?(k) }
     rescue StandardError
+    end
+  end
+
+  def workspaces
+    response = toggl_me_request(true)
+    if response
+      workspaces = response['workspaces']
+      projects = response['projects']
+
+      workspaces.each do |ws|
+        ws.projects = projects.select { |p| p.wid == ws.id }
+      end
+    else
+      []
     end
   end
 
