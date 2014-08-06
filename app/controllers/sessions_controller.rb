@@ -18,7 +18,7 @@ private
 
   def toggle_api_key_is_correct?
     begin
-      client = Toggl::Base.new(current_user.toggl_api_key)
+      client = Toggl::Base.new(current_user.toggl_api_key, current_user.id)
       client.me
       return true
     rescue Toggl::Forbidden

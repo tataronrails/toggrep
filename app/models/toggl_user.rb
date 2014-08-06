@@ -6,8 +6,8 @@ class TogglUser < ActiveRecord::Base
     fullname.presence || email.presence || 'User'
   end
 
-  def sync!(toggl_api_key)
-    client = Toggl::Base.new(toggl_api_key)
+  def sync!(user)
+    client = Toggl::Base.new(user.toggl_api_key, user.id)
     response = client.me
     datas = response.slice(:id, :email, :fullname)
     datas[:uid] = datas[:id]

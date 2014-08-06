@@ -88,7 +88,7 @@ class Agreement < ActiveRecord::Base
   end
 
   def worker_timings_by_project
-    client = Toggl::Base.new(self.worker.toggl_api_key)
+    client = Toggl::Base.new(self.worker.toggl_api_key, self.worker.id)
     entries = []
     response = client.me(true)
     response.time_entries
