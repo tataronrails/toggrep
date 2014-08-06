@@ -1,0 +1,11 @@
+.ui.grid
+  .sixteen.wide.column
+    %h1
+      = 'Projects'
+    .ui.secondary.pointing.demo.menu
+      - @workspaces.each do |workspace|
+        %a.red.item{"data-tab" => "#{workspace.id}"}
+          = workspace.name
+    - @workspaces.each do |workspace|
+      .ui.tab.segment{"data-tab" => "#{workspace.id}"}
+        = render partial: 'table', locals: { projects: workspace.projects.sort_by { |p| p.created_at } }
