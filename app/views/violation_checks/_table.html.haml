@@ -1,0 +1,10 @@
+%table.ui.table{ border: '1' }
+  %tr
+    %th N
+    %th Date
+    %th Description
+  - violation_checks.each_with_index do |vc, index|
+    %tr
+      %td= index + 1
+      %td= l(vc.created_at)
+      %td= vc.violation_rule.description

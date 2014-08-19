@@ -20,6 +20,7 @@ Toggrep::Application.routes.draw do
   end
 
   resources :agreements, except: :index do
+    resources :violation_checks, only: [:index]
     member do
       get :accept, :reject, :cancel
     end
