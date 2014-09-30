@@ -3,11 +3,15 @@
   .ui.three.column.grid
     .column
       .ui.fluid.form.segment
-        %h3.ui.header Sign in
+        %h3.ui.header Sign in:
+        %h4.ui.header With an email/password
         .field
           = f.input :email, :required => false, :autofocus => false
         .field
           = f.input :password, :required => false
+        %h4.ui.header With a Toggl token
+        .field
+          = f.input :toggl_api_key, :label => 'Toggle token', :required => false
         .inline.field
           .ui.checkbox
             %input{:type => "checkbox"}

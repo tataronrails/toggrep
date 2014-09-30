@@ -1,7 +1,13 @@
 Toggrep::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-  devise_for :users, controllers: { sessions: "sessions" }
+  devise_for :users, controllers:
+  {
+    sessions: "sessions",
+    registrations: "registrations",
+    confirmations: "confirmations",
+    passwords: "passwords"
+  }
 
   resources :users, :only => [:edit, :show, :update, :destroy] do
     User::ROLES.each do |role|
