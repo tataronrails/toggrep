@@ -1,0 +1,24 @@
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+  = f.error_notification
+  .ui.three.column.grid
+    .column
+      .ui.fluid.form.segment
+        %h3.ui.header Edit #{resource_name.to_s.humanize}
+        .field
+          = f.input :email, required: true, autofocus: true
+          - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+            %p
+              Currently waiting confirmation for: #{resource.unconfirmed_email}
+        .field
+          = f.input :password, autocomplete: 'off', hint: "leave it blank if you don't want to change it", required: false
+        .field
+          = f.input :password_confirmation, required: false
+        .field
+          = f.input :current_password, required: true
+        .ui.buttons
+          = f.button :submit, 'Update', class: 'ui positive button'
+          .or
+          = link_to 'Back', :back, class: 'ui button'
+      .ui.segment
+        %a.ui.red.button{href: registration_path(resource_name), data: { confirm: 'Are you sure?' }, method: :delete}
+          Cancel my account
