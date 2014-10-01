@@ -42,12 +42,12 @@ en:
       signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please open the link to activate your account."
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and click on the confirm link to finalize confirming your new email address."
       updated: "You updated your account successfully."
-      rejected: "Toggle.com has rejected your token key"
+      rejected: "Toggl.com has rejected your token key"
       exists: "Account already exists. Signed in successfully"
     sessions:
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
-      wrong_toggl_api_key: "Toggle api key in your profile is invalid. Please correct it."
+      wrong_toggl_api_key: "Toggl api key in your profile is invalid. Please correct it."
       unauthenticated: "You need to sign in or sign up before continuing."
     unlocks:
       send_instructions: "You will receive an email with instructions about how to unlock your account in a few minutes."

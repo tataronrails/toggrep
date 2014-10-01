@@ -1,6 +1,6 @@
 class SessionsController < Devise::SessionsController
 
-   def create
+  def create
     self.resource = warden.authenticate!(:token_authenticatable, :database_authenticatable, :rememberable)
     set_flash_message(:notice, :signed_in) if is_flashing_format?
     sign_in(resource_name, resource)

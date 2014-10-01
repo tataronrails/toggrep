@@ -6,7 +6,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     begin
-      @user = User.find_by! toggl_api_key: get_toggl_data[:toggl_api_key]
+      @user = User.find_by!(toggl_api_key: get_toggl_data[:toggl_api_key])
       sign_in @user
       if user_signed_in?
         set_flash_message(:notice, :exists) if is_flashing_format?
@@ -42,11 +42,11 @@ private
   end
 
   def get_toggl_data
-    client = Toggl::Base.new params[:user][:toggl_api_key], "api_token"
+    client = Toggl::Base.new(params[:user][:toggl_api_key], 'api_token')
     response = client.me(true)
     user_email = response.email
     user_toggl_api_key = response.api_token
-    return { :email => user_email, :toggl_api_key => user_toggl_api_key }
+    { email: user_email, toggl_api_key: user_toggl_api_key }
   end
 
 end

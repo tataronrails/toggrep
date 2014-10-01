@@ -1,4 +1,4 @@
-= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
   = f.error_notification
   .ui.three.column.grid
     .column
@@ -6,16 +6,16 @@
         %h3.ui.header Sign in:
         %h4.ui.header With an email/password
         .field
-          = f.input :email, :required => false, :autofocus => false
+          = f.input :email, required: false, autofocus: false
         .field
-          = f.input :password, :required => false
+          = f.input :password, required: false
         %h4.ui.header With a Toggl token
         .field
-          = f.input :toggl_api_key, :label => 'Toggle token', :required => false
+          = f.input :toggl_api_key, label: 'Toggl token', required: false
         .inline.field
           .ui.checkbox
-            %input{:type => "checkbox"}
-              = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
+            %input{type: 'checkbox'}
+              = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
 
-        = f.button :submit, "Sign in", class: "small ui purple button"
-      = render "devise/shared/links"
+        = f.button :submit, 'Sign in', class: 'small ui purple button'
+      = render 'devise/shared/links'

@@ -17,7 +17,7 @@ gem 'andand'
 gem 'select2-rails'
 gem 'resque'
 gem 'resque_mailer'
-gem 'resque-scheduler', '~> 2.5.5'
+gem 'resque-scheduler'
 gem 'redis-server'
 gem 'inherited_resources',
   github: 'josevalim/inherited_resources',
