@@ -100,6 +100,10 @@ class Agreement < ActiveRecord::Base
     entries
   end
 
+  def worker_timings_by_project_duration
+    (worker_timings_by_project.map(&:duration).sum / 1.hour)
+  end
+
   def can_be_accepted_by_user?(user)
     if user == worker && user == manager
       can_accept?
