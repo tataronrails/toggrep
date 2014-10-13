@@ -40,6 +40,11 @@
           .right.floated
             = @agreement.limit_max
         .item
+          %i.time.icon
+          Worked time
+          .right.floated
+            = l(@agreement.worker_timings_by_project_duration, format: '%H:%M')
+        .item
           %i.empty.checkbox.icon
           Started at
           .right.floated
