@@ -43,7 +43,7 @@
           %i.time.icon
           Worked time
           .right.floated
-            = @agreement.worker_timings_by_project_duration
+            = l(@agreement.worker_timings_by_project_duration, format: '%H:%M')
         .item
           %i.empty.checkbox.icon
           Started at

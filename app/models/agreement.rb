@@ -101,7 +101,10 @@ class Agreement < ActiveRecord::Base
   end
 
   def worker_timings_by_project_duration
-    (worker_timings_by_project.map(&:duration).sum / 1.hour)
+    duration = worker_timings_by_project.map(&:duration).sum
+    max_duration = limit_max * 60 * 60
+    duration = max_duration if duration > max_duration
+    Time.at(duration).utc
   end
 
   def can_be_accepted_by_user?(user)
