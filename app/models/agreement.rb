@@ -101,9 +101,20 @@ class Agreement < ActiveRecord::Base
   end
 
   def worker_timings_by_project_duration
-    duration = worker_timings_by_project.map(&:duration).sum
-    max_duration = limit_max * 60 * 60
-    duration = max_duration if duration > max_duration
+    duration = worker_timings_by_project
+      .select do |t|
+        togg_start = Time.parse(t.start)
+        (togg_start >= started_at) && (togg_start <= ended_at)
+      end.map do |t|
+        togg_stop  = Time.parse(t.stop)
+        if togg_stop > ended_at
+          after_limit_time = togg_stop - ended_at
+          t.duration - after_limit_time
+        else
+          t.duration
+        end
+      end.sum
+
     Time.at(duration).utc
   end
 
