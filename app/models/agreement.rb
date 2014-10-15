@@ -103,13 +103,13 @@ class Agreement < ActiveRecord::Base
   def worker_timings_by_project_duration
     duration = worker_timings_by_project
       .select do |t|
-        togg_start = Time.parse(t.start)
-        (togg_start >= started_at) && (togg_start <= ended_at)
+        togg_start = Time.parse(t.start).utc
+        (togg_start >= started_at.to_time(:utc)) && (togg_start <= ended_at.to_time(:utc))
       end.map do |t|
-        togg_stop  = Time.parse(t.stop)
-        if togg_stop > ended_at
-          after_limit_time = togg_stop - ended_at
-          t.duration - after_limit_time
+        togg_stop  = Time.parse(t.stop).utc
+        ended_at_time = ended_at.to_time(:utc)
+        if togg_stop > ended_at_time
+          t.duration - (togg_stop - ended_at_time)
         else
           t.duration
         end
