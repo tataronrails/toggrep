@@ -24,4 +24,9 @@ class NotificationMailer < ActionMailer::Base
     @to = to_status
     mail(to: email, subject: 'Toggrep notification')
   end
+
+  def ending_agreements(email, agreements)
+    @agreements = agreements
+    mail(to: email, subject: 'Toggrep notification')
+  end
 end

@@ -1,0 +1,7 @@
+Agriments will be finish for 2 days:
+- @agreements.each do |a|
+  %hr
+  %p Agreement: #{ link_to "N#{a.id}", agreement_url(a) }
+  %p Active time: #{ a.started_at } to #{ a.ended_at }
+  %p Worker: #{ link_to a.worker.toggl_user.fullname, user_url(a.worker) }
+

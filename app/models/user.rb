@@ -19,6 +19,12 @@ class User < ActiveRecord::Base
     length: {is: 32},
     unless: :new_record?
 
+  scope :with_ending_agreements_for, -> (days = 0) {
+    joins(:managing_agreements).where(
+      agreements: { ended_at: Date.current - days}
+    ).uniq
+  }
+
   def toggl_me_request(with_related_data = false)
     begin
       client = Toggl::Base.new(self.toggl_api_key, self.id)

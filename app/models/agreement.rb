@@ -45,6 +45,9 @@ class Agreement < ActiveRecord::Base
   scope :user_agreements, -> (user) {
     where('manager_id OR worker_id = ?', user)
   }
+  scope :ending_for, -> (days = 0) {
+    where(ended_at: Date.current - days)
+  }
 
   state_machine :state, :initial => :proposed do
     after_transition  do |agreement, transition|
