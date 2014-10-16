@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
 
   def sync_toggl_user!
     begin
-      toggl_user.sync!(toggl_api_key, self.id)
+      toggl_user.sync!(self)
     rescue Toggl::Forbidden
       false
     end

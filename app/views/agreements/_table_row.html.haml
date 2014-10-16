@@ -5,6 +5,8 @@
     %td
       = "#{a.limit_min} - #{a.limit_max}"
     %td
+      = l(a.worker_timings_by_project_duration, format: '%H:%M')
+    %td
       = a.manager.toggl_user.fullname
     %td
       = a.worker.toggl_user.fullname
