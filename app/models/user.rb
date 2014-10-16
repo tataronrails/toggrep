@@ -1,8 +1,6 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :confirmable,
+         :recoverable, :rememberable, :trackable, :token_authenticatable
 
   ALLOWED_FIELDS = %w(api_token email fullname projects workspaces)
   ROLES = %w(worker manager)
@@ -11,13 +9,18 @@ class User < ActiveRecord::Base
   has_many :managing_agreements, class_name: 'Agreement', foreign_key: 'manager_id'
   has_many :working_agreements, class_name: 'Agreement', foreign_key: 'worker_id'
 
-  before_save :build_toggl_user, :unless => :toggl_user
-  before_save :sync_toggl_user!, :if => :toggl_api_key_changed?
+  before_update :sync_toggl_user!, :if => :toggl_api_key_changed?
 
   validates :toggl_api_key,
     presence: true,
-    length: {is: 32},
-    unless: :new_record?
+    length: {is: 32}
+
+  validates :email,
+    presence: true,
+    uniqueness: true,
+    case_sensitive: false,
+    allow_blank: false,
+    format: {:with  => Devise.email_regexp}
 
   def toggl_me_request(with_related_data = false)
     begin

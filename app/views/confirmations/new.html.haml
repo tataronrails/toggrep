@@ -1,0 +1,12 @@
+= simple_form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
+  = f.error_notification
+  = f.full_error :confirmation_token
+  .ui.three.column.grid
+    .column
+      .ui.fluid.form.segment
+        %h3.ui.header Resend confirmation instructions
+        .field
+          = f.input :email, :required => true, :autofocus => true
+
+        = f.button :submit, "Resend confirmation instructions", class: "small ui purple button"
+      = render "devise/shared/links"
