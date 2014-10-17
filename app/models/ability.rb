@@ -50,8 +50,9 @@ class Ability
 
   def super_user
     can :access, :rails_admin
+    can :manage, :crud
     can :dashboard
-    can [:create, :read, :update, :delete], ViolationRule
+    can :crud, ViolationRule
   end
 
   def change_aliases!
