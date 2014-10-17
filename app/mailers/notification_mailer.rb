@@ -1,5 +1,5 @@
 class NotificationMailer < ActionMailer::Base
-  include Resque::Mailer
+  # include Resque::Mailer
 
   default from: Toggrep::EMAIL['default_from']
 
@@ -25,7 +25,9 @@ class NotificationMailer < ActionMailer::Base
     mail(to: email, subject: 'Toggrep notification')
   end
 
-  def ending_agreements(email, agreements)
+  def ending_agreements(email, agreements, ending_period)
+    @ending_days = ending_period / 1.day
+    @ending_date = Date.current - ending_period
     @agreements = agreements
     mail(to: email, subject: 'Toggrep notification')
   end

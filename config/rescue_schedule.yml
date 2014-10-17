@@ -7,7 +7,7 @@ violation_checker_job:
   description: "Runs violations checks for workers"
 
 managers_notifier_job:
-  cron: '0 9 * * *'
+  cron: '0 9,12,16 * * *'
   class: 'ManagerNotifierJob'
   queue: simple
   descripton: 'Runs notifiers for managers'

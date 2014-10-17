@@ -1,4 +1,4 @@
-Agriments will be finish for 2 days:
+These agreements will end soon in #{@ending_days} days on "#{l(@ending_date, format: '%d %B %Y')}".
 - @agreements.each do |a|
   %hr
   %p Agreement: #{ link_to "N#{a.id}", agreement_url(a) }
