@@ -47,19 +47,5 @@ p 'Agreements'
 past_date_range = [Date.today.prev_week.at_beginning_of_week, Date.today.prev_week.at_end_of_week]
 current_date_range = [Date.today.at_beginning_of_week, Date.today.at_end_of_week]
 
-[past_date_range, current_date_range].each do |date|
-  Agreement::STATES.each do |state|
-    Agreement.create(
-        manager: m,
-        worker: w,
-        project_id: Faker::Number.number(7),
-        limit_min: 35,
-        limit_max: 40,
-        state: state,
-        started_at: date[0],
-        ended_at: date[1]
-    )
-  end
-end
 
 p 'Seeds:End'

@@ -157,4 +157,10 @@ class Agreement < ActiveRecord::Base
       NotificationMailer.agreement_state_changed(self, user.email, transition.from, transition.to).deliver
     end
   end
+  
+  def self.get_time_entries(user, project_id)
+    client = Toggl::Base.new(user.toggl_api_key, user.id)
+    client.get_time_entries(Date.today - 4.weeks).select {|t| t.pid == project_id}
+  end
+  
 end

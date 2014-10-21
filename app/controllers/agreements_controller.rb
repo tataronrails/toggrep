@@ -26,6 +26,10 @@ class AgreementsController < ResourcesController
     redirect_to resource
   end
 
+  def show
+    @time_entries = Agreement.get_time_entries(@agreement.worker, @agreement.project_id)
+  end
+  
   private
 
   def permitted_params
