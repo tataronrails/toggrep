@@ -1,0 +1,26 @@
+.ten.wide.column
+  %h1
+    %br
+
+  .ui.top.attached.center.aligned.segment{class: state_class_show(@agreement.state)}
+    Work History
+    %table.ui.table.segment
+      %thead
+        %tr
+          %th
+            Description
+          %th
+            Duration
+          %th
+            Start
+          %th
+            Stop
+      %tbody
+        - if @time_entries && @time_entries.any?
+          = render partial: 'time_entry_table_row'
+        - else
+          %tfoot
+            %tr
+              %th{colspan: '4'}
+                Nothing to show
+

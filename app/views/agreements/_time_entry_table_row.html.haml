@@ -1,0 +1,10 @@
+- @time_entries.each do |time_entry|
+  %tr
+    %td
+      = time_entry.description
+    %td
+      = time_entry.duration > 0 ? Time.at(time_entry.duration).utc.strftime("%H:%M:%S") : "Working"
+    %td
+      = time_entry.start.to_time.strftime("%Y-%m-%d %H:%M:%S")
+    %td
+      = time_entry.duration > 0 ? time_entry.stop.to_time.strftime("%Y-%m-%d %H:%M:%S") : ""

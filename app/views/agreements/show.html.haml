@@ -55,37 +55,4 @@
           .right.floated
             = @agreement.ended_at.to_s :long
   - if can? :read_work_history, @agreement            
-    .ten.wide.column
-      %h1
-        %br
-      .ui.top.attached.center.aligned.segment{class: state_class_show(@agreement.state)}
-        Work History
-        %table.ui.table.segment
-          %thead
-            %tr
-              %th
-                Description
-              %th
-                Duration
-              %th
-                Start
-              %th
-                Stop
-              %th
-          %tbody
-            - if @time_entries && @time_entries.any?
-              - @time_entries.each do |time_entry|
-                %tr
-                  %td
-                    = time_entry.description
-                  %td
-                    = time_entry.duration > 0 ? Time.at(time_entry.duration).utc.strftime("%H:%M:%S") : "Working"
-                  %td
-                    = time_entry.start.to_time.strftime("%Y-%m-%d %H:%M:%S")
-                  %td
-                    = time_entry.duration > 0 ? time_entry.stop.to_time.strftime("%Y-%m-%d %H:%M:%S") : ""
-            - else
-              %tfoot
-                %tr
-                  %th{colspan: '7'}
-                    Nothing to show
+    = render partial: 'time_entry_table'

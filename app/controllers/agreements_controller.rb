@@ -27,7 +27,7 @@ class AgreementsController < ResourcesController
   end
 
   def show
-    @time_entries = Agreement.get_time_entries(@agreement.worker, @agreement.project_id)
+    @time_entries = Agreement.get_time_entries(@agreement.worker, @agreement.project_id, 4.weeks)
   end
   
   private
