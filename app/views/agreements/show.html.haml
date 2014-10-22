@@ -51,26 +51,26 @@
             = @agreement.ended_at.to_s :long
 
 
-  .ten.wide.column
-    %h1
-      %br
+  - if can? :read_work_history, @agreement            
+    .ten.wide.column
+      %h1
+        %br
 
-    .ui.top.attached.center.aligned.segment{class: state_class_show(@agreement.state)}
-      Work History
-      %table.ui.table.segment
-        %thead
-          %tr
-            %th
-              Description
-            %th
-              Duration
-            %th
-              Start
-            %th
-              Stop
-            %th
-        %tbody
-          - if can? :read_work_history, @agreement
+      .ui.top.attached.center.aligned.segment{class: state_class_show(@agreement.state)}
+        Work History
+        %table.ui.table.segment
+          %thead
+            %tr
+              %th
+                Description
+              %th
+                Duration
+              %th
+                Start
+              %th
+                Stop
+              %th
+          %tbody
             - if @time_entries && @time_entries.any?
               - @time_entries.each do |time_entry|
                 %tr
