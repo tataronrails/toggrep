@@ -140,9 +140,9 @@ class Agreement < ActiveRecord::Base
     end
   end
   
-  def self.get_time_entries(user, project_id)
+  def self.get_time_entries(user, project_id, end_date)
     client = Toggl::Base.new(user.toggl_api_key, user.id)
-    client.get_time_entries(Date.today - 4.weeks).select {|t| t.pid == project_id}
+    client.get_time_entries(Date.today - end_date).select {|t| t.pid == project_id}
   end
   
 end
