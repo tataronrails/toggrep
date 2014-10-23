@@ -2,7 +2,7 @@
   %h1
     %br
 
-  .ui.top.attached.center.aligned.segment{class: state_class_show(@agreement.state)}
+  .ui.top.attached.center.aligned.segment
     Work History
     %table.ui.table.segment
       %thead
@@ -16,8 +16,8 @@
           %th
             Stop
       %tbody
-        - if @time_entries && @time_entries.any?
-          = render partial: 'time_entry_table_row'
+        - if time_entries.any?
+          = render partial: 'time_entry_table_rows', locals: { time_entries: time_entries }
         - else
           %tfoot
             %tr

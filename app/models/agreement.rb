@@ -96,7 +96,7 @@ class Agreement < ActiveRecord::Base
       .select{ |field| field[:pid] == self.project_id }
       .each do |field|
         entries << field if field['duration'] > 0
-      end
+      end if response.time_entries
     entries
   end
 
@@ -156,11 +156,5 @@ class Agreement < ActiveRecord::Base
     [manager, worker].uniq.compact.each do |user|
       NotificationMailer.agreement_state_changed(self, user.email, transition.from, transition.to).deliver
     end
-  end
-  
-  def self.get_time_entries(user, project_id, end_date)
-    client = Toggl::Base.new(user.toggl_api_key, user.id)
-    client.get_time_entries(Date.today - end_date).select {|t| t.pid == project_id}
-  end
-  
+  end  
 end
