@@ -1,5 +1,5 @@
 class NotificationMailer < ActionMailer::Base
-  # include Resque::Mailer
+  include Resque::Mailer
 
   default from: Toggrep::EMAIL['default_from']
 
