@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.0.0'
+
 gem 'rails', '~> 4.0.0'
 gem 'haml'
 gem 'devise'
@@ -34,6 +36,10 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
 
+group :production, :staging do
+  gem 'unicorn'
+end
+
 group :development do
   gem 'quiet_assets'
   gem 'better_errors'
@@ -53,6 +59,12 @@ group :development do
   gem 'pronto-flay', require: false
   gem 'pronto-rails_best_practices', require: false
   gem 'pronto-brakeman', require: false
+
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
+  gem "capistrano-resque", "~> 0.2.1", require: false
 end
 
 group :development, :test do
