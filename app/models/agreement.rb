@@ -64,7 +64,7 @@ class Agreement < ActiveRecord::Base
     end
 
     event :change_by_manager do
-      transition :changed_by_worker => :changed_by_manager
+      transition [:changed_by_worker, :rejected] => :changed_by_manager
     end
 
     event :cancel do
@@ -131,12 +131,12 @@ class Agreement < ActiveRecord::Base
   def can_be_rejected_by_user?(user)
     if user == worker && user == manager
       can_reject?
-      elsif user == worker
-        proposed? || changed_by_manager?
+    elsif user == worker
+      proposed? || changed_by_manager?
     elsif user == manager
       changed_by_worker?
-      end
     end
+  end
 
   def can_be_canceled_by_user?(user)
     user == manager && can_cancel?

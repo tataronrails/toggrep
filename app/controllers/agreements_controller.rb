@@ -52,9 +52,9 @@ class AgreementsController < ResourcesController
   end
 
   def update_state
-    if resource.changed_by_worker?
+    if resource.can_change_by_manager?
       resource.change_by_manager
-    else
+    elsif resource.can_change_by_worker?
       resource.change_by_worker
     end
   end
