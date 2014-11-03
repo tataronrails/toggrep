@@ -49,6 +49,7 @@ class Agreement < ActiveRecord::Base
   state_machine :state, :initial => :proposed do
     after_transition  do |agreement, transition|
       agreement.notify_users transition
+      agreement.update_attribute(:previous_state, transition.from)
     end
 
     event :accept do
@@ -65,6 +66,10 @@ class Agreement < ActiveRecord::Base
 
     event :change_by_manager do
       transition :changed_by_worker => :changed_by_manager
+    end
+
+    event :propose do
+      transition :changed_by_manager => :propose, :if => lambda {|agreement| agreement.previous_state == "rejected"}
     end
 
     event :cancel do
@@ -131,12 +136,12 @@ class Agreement < ActiveRecord::Base
   def can_be_rejected_by_user?(user)
     if user == worker && user == manager
       can_reject?
-      elsif user == worker
+    elsif user == worker
         proposed? || changed_by_manager?
     elsif user == manager
       changed_by_worker?
-      end
     end
+  end
 
   def can_be_canceled_by_user?(user)
     user == manager && can_cancel?
