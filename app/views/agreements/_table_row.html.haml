@@ -14,12 +14,15 @@
       = a.state.humanize
     %td
       .two.fluid.ui.buttons
-        - %w(accept reject).each do |event_name|
+        - %w(accept reject propose).each do |event_name|
           - if can? event_name.to_sym, a
             - if event_name == 'accept'
               = link_to event_name.capitalize, [event_name, a], class: 'ui positive mini button'
-            - else
+            - elsif event_name == 'reject'
               = link_to event_name.capitalize, [event_name, a], class: 'ui negative mini button'
+            - else
+              = link_to event_name.capitalize, [event_name, a], class: 'ui positive mini button'
+
     %td
       - if can?(:update, a)
         .two.fluid.ui.buttons

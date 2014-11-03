@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131212124914) do
+ActiveRecord::Schema.define(version: 20141103162359) do
 
   create_table "agreements", force: true do |t|
     t.integer  "manager_id"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20131212124914) do
     t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "previous_state"
   end
 
   add_index "agreements", ["manager_id"], name: "index_agreements_on_manager_id"

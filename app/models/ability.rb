@@ -41,6 +41,9 @@ class Ability
     can :reject, Agreement do |agreement|
       agreement.can_be_rejected_by_user?(user)
     end
+    can :propose, Agreement do |agreement|
+      agreement.manager == user && agreement.rejected?
+    end
     can :cancel, Agreement do |agreement|
       agreement.can_be_canceled_by_user?(user)
     end
