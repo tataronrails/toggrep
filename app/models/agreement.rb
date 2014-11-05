@@ -43,7 +43,7 @@ class Agreement < ActiveRecord::Base
     where(state: :proposed)
   }
   scope :user_agreements, -> (user) {
-    where('manager_id OR worker_id = ?', user)
+    where(['manager_id == ? OR worker_id == ?', user, user])
   }
 
   state_machine :state, :initial => :proposed do

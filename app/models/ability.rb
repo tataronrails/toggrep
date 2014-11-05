@@ -29,8 +29,8 @@ class Ability
     can :read_details, User, id: user.id
     can :change, User, id: user.id
     can :create, Agreement
-    can :read, Agreement do |agreement|
-      agreement.worker == user || agreement.manager == user
+    can :read, Agreement, ['manager_id == ? OR worker_id == ?', user.id, user.id] do |agreement|
+      agreement.manager == user || agreement.worker == user
     end
     can :update, Agreement do |agreement|
       agreement.can_be_changed_by_user?(user)
@@ -49,7 +49,11 @@ class Ability
 
   def super_user
     can :access, :rails_admin
-    can :manage, :crud
+    can :dashboard
+    can :manage, User
+    can :manage, Agreement
+    can :manage, ViolationRule
+    # can :manage, :all
   end
 
   def change_aliases!
