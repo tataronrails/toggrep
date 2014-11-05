@@ -1,0 +1,28 @@
+.ui.grid
+  .sixteen.wide.column
+    %h1
+      My workspaces
+    .ui.stacked.segment
+      %table.ui.table.segment
+        %thead
+          %tr
+            %th
+              Name
+            %th
+              Hourly rate
+            %th
+              Currency
+            %th
+              Role
+
+        %tbody
+          - @user_workspaces.each do |workspace|
+            %tr
+              %td
+                = workspace.name
+              %td
+                = workspace.default_hourly_rate
+              %td
+                = workspace.default_currency
+              %td
+                = workspace.admin ? "Manager" : "Worker"

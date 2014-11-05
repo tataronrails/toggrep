@@ -21,4 +21,9 @@ class TogglWorkspace
     end
   end
 
+  def self.user_workspaces(user)
+    client = Toggl::Base.new(user.toggl_api_key, user.id)
+    client.workspaces
+  end
+
 end
