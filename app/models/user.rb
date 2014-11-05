@@ -9,7 +9,9 @@ class User < ActiveRecord::Base
   has_many :managing_agreements, class_name: 'Agreement', foreign_key: 'manager_id'
   has_many :working_agreements, class_name: 'Agreement', foreign_key: 'worker_id'
 
-  before_update :sync_toggl_user!, :if => :toggl_api_key_changed?
+  before_save :build_toggl_user, unless: :toggl_user
+  before_save :sync_toggl_user!
+  after_save :save_toggl_user!
 
   validates :toggl_api_key,
     presence: true,
@@ -53,11 +55,15 @@ class User < ActiveRecord::Base
   private
 
   def sync_toggl_user!
-    begin
+    if toggl_api_key? && toggl_api_key_changed?
       toggl_user.sync!(self)
-    rescue Toggl::Forbidden
-      false
     end
+  rescue Toggl::Forbidden
+    false
+  end
+
+  def save_toggl_user!
+    toggl_user.save!
   end
 
 end

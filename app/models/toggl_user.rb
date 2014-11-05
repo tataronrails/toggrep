@@ -6,7 +6,7 @@ class TogglUser < ActiveRecord::Base
     fullname.presence || email.presence || 'User'
   end
 
-  def sync!(user)
+  def sync!(user = self.user)
     client = Toggl::Base.new(user.toggl_api_key, user.id)
     response = client.me
     datas = response.slice(:id, :email, :fullname)
@@ -15,7 +15,7 @@ class TogglUser < ActiveRecord::Base
     attrs = ActionController::Parameters.new(datas).permit(
       %w(uid email fullname)
     )
-    update_attributes(attrs)
+    assign_attributes(attrs)
   end
 
 end
