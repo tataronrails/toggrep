@@ -1,7 +1,8 @@
 .ui.grid
   .sixteen.wide.column
     %h1
-      My workspaces
+      %i.circular.icon.globe
+      My Workspaces
     .ui.stacked.segment
       %table.ui.table.segment
         %thead
@@ -19,7 +20,8 @@
           - @user_workspaces.each do |workspace|
             %tr
               %td
-                = workspace.name
+                = link_to external_toggl_workspace_path(workspace), target: '_blank' do
+                  = workspace.name
               %td
                 = workspace.default_hourly_rate
               %td
