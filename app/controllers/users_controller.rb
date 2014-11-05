@@ -6,16 +6,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @datas = @user.toggl_me_request(true) unless @user.toggl_api_key.blank?
-    @workspaces = []
-    if @datas.present? && @datas['workspaces'].any?
-      @datas['workspaces'].each do |workspace|
-        projects = []
-        @datas['projects'].each do |project|
-          projects << project.name if project.wid == workspace.id
-        end if @datas['projects']
-        @workspaces << Hashie::Mash.new(name: workspace.name, projects: projects)
-      end
-    end
+    @workspaces = TogglWorkspace.extract_workspaces_with_projects(@datas)
   end
 
   def edit

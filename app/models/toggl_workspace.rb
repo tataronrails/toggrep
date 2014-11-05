@@ -8,4 +8,17 @@ class TogglWorkspace
     end
   end
 
+  def self.extract_workspaces_with_projects(datas)
+    datas.andand['workspaces'].reduce([]) do |memo_workspaces, workspace|
+      projects = datas.andand['projects'].reduce([]) do |memo_projects, project|
+        if project.wid == workspace.id
+          memo_projects << project.name
+        end
+        memo_projects.uniq!
+        memo_projects
+      end
+      memo_workspaces << Hashie::Mash.new(name: workspace.name, projects: projects)
+    end
+  end
+
 end
