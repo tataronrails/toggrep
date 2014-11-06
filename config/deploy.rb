@@ -13,7 +13,7 @@ set :deploy_via, :remote_cache
 set :use_sudo, false
 # set :port, 60321
 set :scm, :git
-set :repository, 'git@bitbucket.org:ivcheg/tmptracking.git'
+set :repository, 'git@github.com:tataronrails/toggrep.git'
 set :branch, 'master'
 set :domain, "#{user}@178.62.155.118"
 set :shared_children, shared_children + %w{public/uploads}
