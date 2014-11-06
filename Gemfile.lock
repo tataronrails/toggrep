@@ -68,6 +68,12 @@ GEM
       terminal-table (~> 1.4)
     builder (3.1.4)
     cancancan (1.9.2)
+    capistrano (2.15.5)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
     celluloid (0.15.2)
       timers (~> 1.1.0)
     clamp (0.2.3)
@@ -177,6 +183,13 @@ GEM
     multi_json (1.8.4)
     multipart-post (1.2.0)
     nested_form (0.3.2)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.9.1)
+    net-ssh-gateway (1.2.0)
+      net-ssh (>= 2.6.5)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     octokit (2.7.2)
@@ -398,6 +411,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   cancancan
+  capistrano (= 2.15.5)
   coffee-rails (~> 4.0.0)
   database_cleaner
   devise

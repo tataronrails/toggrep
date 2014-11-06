@@ -35,6 +35,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
 
 group :development do
+  gem 'capistrano', '2.15.5'
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
