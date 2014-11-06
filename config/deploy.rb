@@ -55,22 +55,6 @@ namespace :deploy do
     end
   end
 
-  desc 'Start websocket'
-  task :websocket_start, roles: :app do
-    run "cd #{current_path}; RAILS_ENV=production bundle exec rake websocket_rails:start_server"
-  end
-
-  desc 'Stop websocket'
-  task :websocket_stop, roles: :app do
-    # run "cd #{current_path}; RAILS_ENV=production bundle exec rake websocket_rails:stop_server"
-    pid_file =  "#{current_path}/tmp/pids/websocket_rails.pid"
-    run "if [ -d #{current_path} ] && [ -f #{pid_file} ] && kill -0 `cat #{pid_file}`> /dev/null 2>&1; then cd #{current_path} && RAILS_ENV=production bundle exec rake websocket_rails:stop_server; else echo 'Websocket rails is not running'; fi"
-  end
-
-
-  before 'deploy',          'deploy:websocket_stop'
-  after 'deploy',           'deploy:websocket_start'
-
   before 'deploy', 'deploy:check_revision'
 
 end
