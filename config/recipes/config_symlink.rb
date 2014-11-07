@@ -13,7 +13,7 @@ namespace :config_symlink do
   task :symlink, roles: :app do
     run "ln -nfs #{shared_path}/config/email.yml #{release_path}/config/email.yml"
   end
-  after "deploy:finalize_update", "mysql:symlink"
+  after 'deploy:finalize_update', 'config_symlink:symlink'
 
 
 end

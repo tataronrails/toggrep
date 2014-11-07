@@ -8,6 +8,7 @@ load 'config/recipes/base'
 load 'config/recipes/nginx'
 load 'config/recipes/unicorn'
 load 'config/recipes/mysql'
+load 'config/recipes/config_symlink'
 load 'config/recipes/check'
 
 # set :whenever_command, 'bundle exec whenever' #Fixme: Usage?
