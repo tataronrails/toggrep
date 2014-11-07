@@ -20,11 +20,11 @@ gem 'resque_mailer'
 gem 'resque-scheduler'
 gem 'redis-server'
 gem 'inherited_resources',
-  github: 'josevalim/inherited_resources',
-  ref: '5b61f8a58ab39ea8be11435e750ea90c6a5925af'
+    github: 'josevalim/inherited_resources',
+    ref: '5b61f8a58ab39ea8be11435e750ea90c6a5925af'
 gem 'has_scope',
-  github: 'plataformatec/has_scope',
-  ref: 'b62cea0d810f019f1a89a92da068f37077727662'
+    github: 'plataformatec/has_scope',
+    ref: 'b62cea0d810f019f1a89a92da068f37077727662'
 
 gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.0'
@@ -35,7 +35,6 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
 
 group :development do
-  gem 'capistrano', '2.15.5'
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -54,6 +53,13 @@ group :development do
   gem 'pronto-flay', require: false
   gem 'pronto-rails_best_practices', require: false
   gem 'pronto-brakeman', require: false
+
+  #Deployment Tools
+  gem 'capistrano', '~> 2.15.5'
+  gem 'rvm-capistrano'
+  gem 'capistrano-ext'
+  gem 'net-ssh', '2.7.0'
+
 end
 
 group :development, :test do

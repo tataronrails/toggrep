@@ -29,3 +29,20 @@ In separate terminal windows:
 Resque server is available at:
 
     /resque
+
+## Deployment Activity 
+
+Anywhere from terminal:
+
+    cap environment -T
+    cap environment deploy:install
+    cap environment deploy:setup
+    cap environment deploy:cold
+    cap environment nginx:stop
+    cap environment nginx:start
+    cap environment unicorn:stop
+    cap environment unicorn:start
+    cap environment redis:stop
+    cap environment redis:start
+
+
