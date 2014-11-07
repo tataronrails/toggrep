@@ -1,5 +1,5 @@
 namespace :mysql do
-  desc "Install the latest stable release of mysql."
+  desc 'Install the latest stable release of mysql.'
   task :install, roles: :db, only: {primary: true} do
     run "#{sudo} apt-get -y install mysql-server"
     run "#{sudo} apt-get -y install mysql-client"
