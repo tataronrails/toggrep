@@ -25,6 +25,7 @@ gem 'inherited_resources',
 gem 'has_scope',
     github: 'plataformatec/has_scope',
     ref: 'b62cea0d810f019f1a89a92da068f37077727662'
+gem 'exception_notification'
 
 # Use mysql as the database for Active Record
 group :staging do

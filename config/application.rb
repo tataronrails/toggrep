@@ -25,5 +25,25 @@ module Toggrep
       g.factory_girl true
     end
 
+    ### ExceptionNotification
+    unless Rails.env.development?
+      config.middleware.use ExceptionNotification::Rack, email: {
+          email_prefix: "[Toggrep] [#{Rails.env}] ",
+          :sender_address => %{'Exception Notifier' <no-reply@Toggrep.com>},
+          :exception_recipients => %w{rajeevsharma86@gmail.com},
+          delivery_method: :smtp,
+          smtp_settings: {
+              address: 'smtp.gmail.com',
+              port: 587,
+              domain: 'toggrep.com',
+              user_name: 'tataronrails@gmail.com',
+              password: 'tataronrails78',
+              authentication: :plain,
+              enable_starttls_auto: true
+          }
+      }
+    end
+
+
   end
 end

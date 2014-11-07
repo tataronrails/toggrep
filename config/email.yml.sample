@@ -29,10 +29,10 @@ staging:
   raise_delivery_errors: true
   smtp_settings:
     :address: smtp.gmail.com
-    :port: 1025
+    :port: 25
     :authentication: plain
-    :user_name: user
-    :password: 123456789
+    :user_name: tataronrails@gmail.com
+    :password: tataronrails78
   default_url_options:
-    :host: localhost:3000
-  default_from: from@example.com
+    :host: '178.62.155.118'
+  default_from: no-reply@toggrep.com
