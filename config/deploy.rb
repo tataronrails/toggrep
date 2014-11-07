@@ -2,7 +2,7 @@
 require 'rvm/capistrano'
 require 'bundler/capistrano'
 require 'capistrano/ext/multistage'
-require "whenever/capistrano"
+# require "whenever/capistrano"
 
 load 'config/recipes/base'
 load 'config/recipes/nginx'
@@ -10,7 +10,7 @@ load 'config/recipes/unicorn'
 load 'config/recipes/mysql'
 load 'config/recipes/check'
 
-set :whenever_command, 'bundle exec whenever' #Fixme: Usage?
+# set :whenever_command, 'bundle exec whenever' #Fixme: Usage?
 
 set :application, 'toggrep'
 
