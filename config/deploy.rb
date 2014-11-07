@@ -15,8 +15,8 @@ load 'config/recipes/check'
 set :application, 'toggrep'
 
 set :user do
-  default_user = 'deploy'
-  user = Capistrano::CLI.ui.ask('username (Default is deploy) : ')
+  default_user = 'robot'
+  user = Capistrano::CLI.ui.ask('username (Default is robot) : ')
   user = default_user if user.empty?
   user
 end
