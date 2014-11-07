@@ -1,6 +1,6 @@
 namespace :redis do
 
-  desc "Install redis"
+  desc 'Installing redis'
   task :install do
     ["cd /tmp",
      "wget http://download.redis.io/redis-stable.tar.gz",

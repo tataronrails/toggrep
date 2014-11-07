@@ -7,16 +7,16 @@ namespace :mysql do
   end
   after "deploy:install", "mysql:install"
 
-  desc "Generate the database.yml configuration file."
+  desc 'Generate the database.yml configuration file.'
   task :setup, roles: :app do
     run "mkdir -p #{shared_path}/config"
     run <<-CPYML
-      cp #{release_path}/config/database.example.yml #{shared_path}/config/database.yml
+      cp #{release_path}/config/database.yml.sample #{shared_path}/config/database.yml
     CPYML
   end
-  after "deploy:finalize_update", "mysql:setup"
+  after 'deploy:finalize_update', 'mysql:setup'
 
-  desc "Create a database for this application."
+  desc 'Create a database for this application.'
   task :create_database, roles: :app do
     run <<-CMD
       cd  #{current_path}; bundle exec rake db:create RAILS_ENV=#{rails_env}
@@ -26,7 +26,7 @@ namespace :mysql do
   #after "deploy:finalize_update", "mysql:create_database"
   before "deploy:migrate", "mysql:create_database"
 
-  desc "Symlink the database.yml file into latest release"
+  desc 'Symlink the database.yml file into latest release'
   task :symlink, roles: :app do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
   end
