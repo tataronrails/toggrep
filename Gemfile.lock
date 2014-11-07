@@ -382,6 +382,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    sqlite3 (1.3.9)
     state_machine (1.2.0)
     temple (0.6.7)
     terminal-table (1.4.5)
@@ -467,6 +468,7 @@ DEPENDENCIES
   semantic-ui-sass (~> 0.15.5.0)
   shoulda-matchers
   simple_form
+  sqlite3
   state_machine
   toggl_api
   uglifier (>= 1.3.0)
