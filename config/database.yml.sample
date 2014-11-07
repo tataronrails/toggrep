@@ -11,7 +11,11 @@ test: &test
   timeout: 5000
 
 staging:
-  adapter: sqlite3
-  database: db/staging.sqlite3
-  pool: 5
-  timeout: 5000
+  adapter: mysql2
+  encoding: utf8
+  database: toggrep_staging
+  pool: 25
+  reaping_frequency: 10
+  username: rails
+  password: Y8PYIYIfje
+  socket: /var/run/mysqld/mysqld.sock

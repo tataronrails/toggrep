@@ -26,7 +26,9 @@ gem 'has_scope',
     github: 'plataformatec/has_scope',
     ref: 'b62cea0d810f019f1a89a92da068f37077727662'
 
-gem 'sqlite3'
+# Use mysql as the database for Active Record
+gem 'mysql2'
+
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
