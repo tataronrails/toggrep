@@ -36,8 +36,8 @@ set :ssl_enabled, false
 # set :cert_key_path, "#{current_path}/ssl-certs/ssl.key"
 
 # Source Code Details
-set :scm, "git"
-set :repository, "git@git.assembla.com:papayaheaderlabs.elderberry.git"
+set :scm, 'git'
+set :repository, 'git@github.com:tataronrails/toggrep.git'
 
 set :branch do
   default_branch = 'master'
