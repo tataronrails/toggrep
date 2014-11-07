@@ -54,3 +54,5 @@
           Ended at
           .right.floated
             = @agreement.ended_at.to_s :long
+  - if can? :read_work_history, @agreement            
+    = render partial: 'time_entry_table', locals: { time_entries: @time_entries }

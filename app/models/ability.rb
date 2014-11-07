@@ -44,7 +44,9 @@ class Ability
     can :cancel, Agreement do |agreement|
       agreement.can_be_canceled_by_user?(user)
     end
-
+    can :read_work_history, Agreement do |agreement|
+      agreement.manager == user
+    end
   end
 
   def super_user

@@ -21,4 +21,8 @@ class TogglProject
     client.project_users(project_id)
   end
 
+  def self.time_entries(user, project_id, date_from)
+    client = Toggl::Base.new(user.toggl_api_key, user.id)
+    client.get_time_entries(date_from).select {|t| t.pid == project_id}
+  end
 end

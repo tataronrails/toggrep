@@ -96,7 +96,7 @@ class Agreement < ActiveRecord::Base
       .select{ |field| field[:pid] == self.project_id }
       .each do |field|
         entries << field if field['duration'] > 0
-      end
+      end if response.time_entries
     entries
   end
 
@@ -156,5 +156,5 @@ class Agreement < ActiveRecord::Base
     [manager, worker].uniq.compact.each do |user|
       NotificationMailer.agreement_state_changed(self, user.email, transition.from, transition.to).deliver
     end
-  end
+  end  
 end

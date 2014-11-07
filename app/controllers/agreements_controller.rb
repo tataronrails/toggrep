@@ -26,6 +26,10 @@ class AgreementsController < ResourcesController
     redirect_to resource
   end
 
+  def show
+    @time_entries = TogglProject.time_entries(@agreement.worker, @agreement.project_id, (Date.today - 4.weeks))
+  end
+  
   private
 
   def permitted_params
