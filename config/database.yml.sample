@@ -13,7 +13,7 @@ test: &test
 staging:
   adapter: mysql2
   encoding: utf8
-  database: toggrep_staging
+  database: rails
   pool: 25
   reaping_frequency: 10
   username: rails
