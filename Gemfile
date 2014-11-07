@@ -27,7 +27,9 @@ gem 'has_scope',
     ref: 'b62cea0d810f019f1a89a92da068f37077727662'
 
 # Use mysql as the database for Active Record
-gem 'mysql2'
+group :staging do
+  gem 'mysql2'
+end
 
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
