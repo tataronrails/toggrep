@@ -29,7 +29,7 @@ class Ability
     can :read_details, User, id: user.id
     can :change, User, id: user.id
     can :create, Agreement
-    can :read, Agreement, ['manager_id == ? OR worker_id == ?', user.id, user.id] do |agreement|
+    can :read, Agreement, ['manager_id = ? OR worker_id = ?', user.id, user.id] do |agreement|
       agreement.manager == user || agreement.worker == user
     end
     can :update, Agreement do |agreement|

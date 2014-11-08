@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 20140917062629) do
     t.datetime "updated_at"
   end
 
-  add_index "agreements", ["manager_id"], name: "index_agreements_on_manager_id"
-  add_index "agreements", ["project_id"], name: "index_agreements_on_project_id"
-  add_index "agreements", ["worker_id"], name: "index_agreements_on_worker_id"
+  add_index "agreements", ["manager_id"], name: "index_agreements_on_manager_id", using: :btree
+  add_index "agreements", ["project_id"], name: "index_agreements_on_project_id", using: :btree
+  add_index "agreements", ["worker_id"], name: "index_agreements_on_worker_id", using: :btree
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"
@@ -36,12 +36,12 @@ ActiveRecord::Schema.define(version: 20140917062629) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      limit: 2
-    t.integer  "year",       limit: 5
+    t.integer  "year",       limit: 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories"
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
 
   create_table "toggl_users", force: true do |t|
     t.integer  "user_id",                 null: false
@@ -73,9 +73,9 @@ ActiveRecord::Schema.define(version: 20140917062629) do
     t.string   "unconfirmed_email"
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "violation_checks", force: true do |t|
     t.integer  "violation_rule_id",                 null: false
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20140917062629) do
   create_table "violation_rules", force: true do |t|
     t.string   "condition",   default: "", null: false
     t.string   "assert_each", default: "", null: false
-    t.text     "description", default: "", null: false
+    t.text     "description",              null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
