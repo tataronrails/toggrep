@@ -28,12 +28,11 @@ staging:
   delivery_method: :smtp
   raise_delivery_errors: true
   smtp_settings:
-    :address: mailtrap.io
-    :domain: mailtrap.io
-    :port: 2525
-    :authentication: cram_md5
-    :user_name: 261024172376b3ca5
-    :password: ce72ae23e25e0b
+    :address: smtp.gmail.com
+    :port: 587
+    :authentication: plain
+    :user_name: tataronrails@gmail.com
+    :password: tataronrails78
     :enable_starttls_auto: true
   default_url_options:
     :host: '178.62.155.118'
