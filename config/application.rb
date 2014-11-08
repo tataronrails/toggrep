@@ -33,11 +33,10 @@ module Toggrep
           :exception_recipients => %w{rajeevsharma86@gmail.com},
           delivery_method: :smtp,
           smtp_settings: {
-              address: 'mailtrap.io',
-              domain: 'mailtrap.io',
-              port: 2525,
-              user_name: '261024172376b3ca5',
-              password: 'ce72ae23e25e0b',
+              address: 'smtp.gmail.com',
+              port: 587,
+              user_name: 'tataronrails2@gmail.com',
+              password: 'tataruby',
               authentication: :plain,
               enable_starttls_auto: true
           }
