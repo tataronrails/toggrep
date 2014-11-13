@@ -18,7 +18,7 @@ class TogglWorkspace
         memo_projects
       end
       memo_workspaces << Hashie::Mash.new(name: workspace.name, projects: projects)
-    end
+    end if datas.andand['projects'].present?
   end
 
   def self.user_workspaces(user)

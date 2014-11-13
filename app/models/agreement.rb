@@ -88,15 +88,17 @@ class Agreement < ActiveRecord::Base
   end
 
   def worker_timings_by_project
-    client = Toggl::Base.new(self.worker.toggl_api_key, self.worker.id)
+    client = Toggl::Base.new(self.worker.toggl_api_key, self.worker.id) if self.worker.present?
     entries = []
-    response = client.me(true)
-    response.time_entries
-      .presence
-      .select{ |field| field[:pid] == self.project_id }
-      .each do |field|
+    if client.present?
+      response = client.me(true)
+      response.time_entries
+        .presence
+        .select{ |field| field[:pid] == self.project_id }
+        .each do |field|
         entries << field if field['duration'] > 0
       end
+    end
     entries
   end
 

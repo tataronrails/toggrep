@@ -18,7 +18,7 @@ gem 'select2-rails'
 gem 'resque'
 gem 'resque_mailer'
 gem 'resque-scheduler'
-gem 'redis-server'
+# gem 'redis-server'
 gem 'inherited_resources',
   github: 'josevalim/inherited_resources',
   ref: '5b61f8a58ab39ea8be11435e750ea90c6a5925af'
@@ -54,6 +54,7 @@ group :development do
   gem 'pronto-flay', require: false
   gem 'pronto-rails_best_practices', require: false
   gem 'pronto-brakeman', require: false
+  gem 'debugger'
 end
 
 group :development, :test do
