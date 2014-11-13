@@ -9,7 +9,7 @@
     %td
       = a.manager.toggl_user.fullname
     %td
-      = a.worker.toggl_user.fullname
+      = a.worker.toggl_user.fullname if a.worker.present?
     %td{class: state_class_index(a.state)}
       = a.state.humanize
     %td

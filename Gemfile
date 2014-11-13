@@ -54,6 +54,7 @@ group :development do
   gem 'pronto-flay', require: false
   gem 'pronto-rails_best_practices', require: false
   gem 'pronto-brakeman', require: false
+  gem 'debugger'
 end
 
 group :development, :test do
