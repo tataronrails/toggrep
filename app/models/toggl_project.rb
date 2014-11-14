@@ -16,9 +16,23 @@ class TogglProject
     end
   end
 
-  def self.project_users(user, project_id)
+  def self.project_users(user, project_id, active=true)
     client = Toggl::Base.new(user.toggl_api_key, user.id)
-    client.project_users(project_id)
+    project_users = client.project_users(project_id)
+    if active
+      wid = client.project(project_id).wid
+      workspace_users = client.get_relations_of_workspace_and_user wid
+      arr = []
+      project_users.each do |pu|
+        workspace_users.each do |e|
+          if !e.inactive && e.uid == pu.uid
+            arr << pu
+          end
+        end
+      end
+      return arr
+    end
+    project_users
   end
 
 end
