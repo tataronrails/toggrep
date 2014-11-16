@@ -11,7 +11,7 @@ class TogglWorkspace
   def self.extract_workspaces_with_projects(datas)
     datas.andand['workspaces'].reduce([]) do |memo_workspaces, workspace|
       projects = datas.andand['projects'].reduce([]) do |memo_projects, project|
-        if project.wid == workspace.id
+        if project.wid == workspace.id && project.active
           memo_projects << project.name
         end
         memo_projects.uniq!
