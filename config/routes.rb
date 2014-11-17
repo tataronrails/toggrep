@@ -4,7 +4,8 @@ Toggrep::Application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'sessions',
     registrations: 'registrations',
-    confirmations: 'confirmations'
+    confirmations: 'confirmations',
+    passwords: 'passwords'
   }
 
   resources :users, :only => [:edit, :show, :update, :destroy] do
