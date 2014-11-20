@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
 
   def sync_toggl_user!
     if toggl_api_key? && toggl_api_key_changed?
-      toggl_user.sync!(self)
+      toggl_user.sync!(new_record? ? toggl_api_key : nil)
     end
   rescue Toggl::Forbidden
     false
