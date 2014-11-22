@@ -34,6 +34,7 @@ Toggrep::Application.routes.draw do
     get :project_users, to: 'toggl_projects#project_users'
     get :projects, to: 'toggl_projects#projects'
     get :workspaces, to: 'toggl_workspaces#index'
+    get :workers, to: 'toggl_workers#index'
   end
 
   root :to => 'high_voltage/pages#show', id: 'root'

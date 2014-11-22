@@ -5,6 +5,8 @@ require 'rspec/rails'
 # require 'rspec/autorun'
 require 'factory_girl'
 
+require 'toggl_factories'
+
 def zeus_running?
   File.exists? '.zeus.sock'
 end

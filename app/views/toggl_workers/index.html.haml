@@ -1,0 +1,25 @@
+.ui.grid
+  .sixteen.wide.column
+    %h1
+      Workers
+    .ui.stacked.segment
+      %table.ui.table.segment
+        %thead
+          %tr
+            %th
+              Name
+            %th
+              Workspace
+            %th
+              Projects
+        %tbody
+          - @workspaces.each do |workspace|
+            - workspace.users.each do |user|
+              %tr
+                %td
+                  = "#{user.name}(#{user.admin ? 'Manager' : ''})"
+                %td
+                  = workspace.name
+                %td
+                  - user.projects.each do |u_project|
+                    %p= u_project.name

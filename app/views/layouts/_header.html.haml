@@ -4,6 +4,7 @@
     - if current_user && !incorrect_toggl_api_key?
       = link_to 'Agreements', "#{user_manager_agreements_path(current_user)}/all", class: 'item'
       = link_to 'Workspaces', workspaces_path, class: 'item'
+      = link_to 'Workers', workers_path, class: 'item'
     .right.menu
       - if current_user
         = link_to current_user, class: 'item avatar' do
