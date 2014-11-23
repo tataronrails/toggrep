@@ -6,7 +6,11 @@ class TogglProject
     toggl_projects = response.projects
     toggl_projects.select!(&:active)
     toggl_projects.reduce([]) do |memo, p|
-      project_users = client.project_users(p.id)
+      begin
+        project_users = client.project_users(p.id)
+      rescue Toggl::NotFound
+        project_users = []
+      end
       project_users.find do |pu|
         if role == 'manager'
           memo << p if pu.uid == user.toggl_user.uid && pu.manager
